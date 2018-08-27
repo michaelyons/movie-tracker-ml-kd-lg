@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import key from './key';
+import key from '../../key';
 
 class App extends Component {
   render() {

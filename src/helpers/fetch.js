@@ -1,4 +1,3 @@
-import React from 'react'
 import { cleanMovies } from './cleaner';
 
 export const firstFetch = async (url) => {

@@ -1,7 +1,4 @@
-export const movieCard = (title, overview, id) => ({
+export const movieCard = (movies) => ({
   type: 'MOVIE_CARD',
-  title,
-  overview,
-  rating,
-  id
+  movies
 })

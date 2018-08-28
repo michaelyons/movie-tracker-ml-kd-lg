@@ -11,12 +11,10 @@ class App extends Component {
   componentDidMount = async () => {
     const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1/`
     const data = await firstFetch(url)
-    // console.log(data)
     this.props.makeCards(data)
   }
 
   render() {
-    console.log('app', this.props)
     return (
       <div className="App">
         <header className="App-header">
@@ -28,12 +26,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-   state
-})
+// const mapStateToProps = (state) => ({
+//    state
+// })
 
 const mapDispatchToProps = (dispatch) => ({
   makeCards: (movieArray) => dispatch(movieCard(movieArray))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(null, mapDispatchToProps)(App)

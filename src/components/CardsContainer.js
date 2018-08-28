@@ -7,17 +7,18 @@ class CardsContainer extends Component {
   render() {
     return (
       <div>
-        { this.props.addCardReducer.map(card => <Card {...card}/> )}
-      </div>)
+        { this.props.data.map(card => <Card {...card}/> )}
+      </div>
+    )
   }
 }
 
 const mapStateToProps = (card) => ({
-  addCardReducer: card.addCardReducer
+  data: card.addCardReducer
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  makeCards: ((movieArray) => dispatch(movieCard(movieArray)))
-})
+// const mapDispatchToProps = (dispatch) => ({
+//   makeCards: ((movieArray) => dispatch(movieCard(movieArray)))
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardsContainer)
+export default connect(mapStateToProps)(CardsContainer)

@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { MSTP, MDTP } from 'react';
 import { movieCard } from '../../actions/makeMovies.js';
 import './App.css';
 import { key } from '../../helpers/key.js';
 import { firstFetch } from '../../helpers/fetch.js';
-import { CardsContainer } from '../../components/CardsContainer.js';
+import CardsContainer from '../../components/CardsContainer.js';
 
 
 class App extends Component {  
-  componentDidMount = async (props) => {
+  componentDidMount = async () => {
     const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1/`
     const data = await firstFetch(url)
-    movieCard(data)
+    // console.log(data)
+    this.props.makeCards(data)
   }
 
   render() {
+    console.log('app', this.props)
     return (
       <div className="App">
         <header className="App-header">
@@ -28,7 +29,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cards: state.cards
+   state
 })
 
 const mapDispatchToProps = (dispatch) => ({

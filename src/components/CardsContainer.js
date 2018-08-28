@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { MSTP, MDTP } from 'react';
 import { movieCard } from '../actions/makeMovies.js';
+import { Card } from './Card'
 
-export const CardsContainer = () => {
-  return(<div></div>)
+class CardsContainer extends Component {
+  render() {
+    return (
+      <div>
+        { this.props.addCardReducer.map(card => <Card {...card}/> )}
+      </div>)
+  }
 }
 
-const mapStateToProps = (state) => ({
-  cards: state.cards
+const mapStateToProps = (card) => ({
+  addCardReducer: card.addCardReducer
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -24,6 +24,6 @@ Install the dependencies -> `npm install` -> Start server -> `npm start` -> Once
 ![comp](https://github.com/michaelyons/movie-tracker-ml-kd-lg/blob/master/Screen%20Shot%202018-08-29%20at%202.51.32%20PM.png)
 
 ### Authors
-[Michael Lyons](https://github.com/michaelyons),
-[Lee Graham](https://github.com/TwirlingGoddess),
-[Kiel Dehnert](https://github.com/kielzor)
+[Kiel Dehnert](https://github.com/kielzor), 
+[Lee Graham](https://github.com/TwirlingGoddess), 
+[Michael Lyons](https://github.com/michaelyons)

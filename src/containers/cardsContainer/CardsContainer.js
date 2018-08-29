@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { movieCard } from '../actions/makeMovies.js';
-import { Card } from './Card'
+// import { movieCard } from '../actions/makeMovies.js';
+import { Card } from '../../components/card/Card.js'
+import './CardsContainer.css'
 
 class CardsContainer extends Component {
   render() {
     return (
-      <div>
-        { this.props.data.map(card => <Card {...card}/> )}
+      <div className='cards-container' >
+        { this.props.data.map(card => <Card {...card}/> ) }
       </div>
     )
   }

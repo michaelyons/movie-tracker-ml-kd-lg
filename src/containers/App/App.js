@@ -5,19 +5,18 @@ import './App.css';
 import { key } from '../../helpers/key.js';
 import { firstFetch } from '../../helpers/fetch.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
-import { Login } from '../../components/login/Login.js'
+import { Login } from '../../components/login/Login.js';
 
-
-class App extends Component {  
+class App extends Component {
   componentDidMount = async () => {
-    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1/`
-    this.makeFetch(url)
-  }
+    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1/`;
+    this.makeFetch(url);
+  };
 
-  makeFetch = async (url) => {
-    const data = await firstFetch(url)
-    this.props.makeCards(data)
-  }
+  makeFetch = async url => {
+    const data = await firstFetch(url);
+    this.props.makeCards(data);
+  };
 
   render() {
     return (
@@ -36,8 +35,11 @@ class App extends Component {
 //    state
 // })
 
-const mapDispatchToProps = (dispatch) => ({
-  makeCards: (movieArray) => dispatch(movieCard(movieArray))
-})
+const mapDispatchToProps = dispatch => ({
+  makeCards: movieArray => dispatch(movieCard(movieArray))
+});
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);

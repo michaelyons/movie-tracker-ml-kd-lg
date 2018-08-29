@@ -1,9 +1,10 @@
-export const cleanMovies = async (data) => {
+export const cleanMovies = async data => {
   return data.results.map(result => {
     return {
-      title: result.title, 
-      overview: result.overview, 
+      title: result.title,
+      overview: result.overview,
       rating: result.vote_average,
-      id: (Date.now()*Math.random()).toFixed(0)}
-  })
-}
+      id: (Date.now() * Math.random()).toFixed(0)
+    };
+  });
+};

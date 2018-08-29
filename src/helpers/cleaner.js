@@ -6,5 +6,4 @@ export const cleanMovies = async (data) => {
       rating: result.vote_average,
       id: (Date.now()*Math.random()).toFixed(0)}
   })
-  //maybe need promise.all
 }

@@ -12,14 +12,14 @@ class UserLogin extends Component {
   loginUser = async (event) => {
     event.preventDefault();
     const { email, password } = this.state
-    const response = await fetch('http://localhost:3000/users/', {
+    const response = await fetch('http://localhost:3000/api/users/', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
         'Content-Type': 'application/json'
       }
     })
-    console.log(response)
+    return await response.json()
   }
 
   handleInput = (event) => {

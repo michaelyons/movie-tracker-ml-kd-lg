@@ -24,12 +24,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to MovieTracker</h1>
-          <Route
-            path="/"
-            render={() => {
-              return <LoginButtons />;
-            }}
-          />
+        
           <Route
             path="/login"
             render={() => {

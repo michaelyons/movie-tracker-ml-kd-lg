@@ -9,19 +9,38 @@ class UserLogin extends Component {
     };
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+  }
+
+  handleInput = (event) => {
+    const { name, value } = event.target
+
+    this.setState({
+      [name]: value
+    })
+
+  }
+
   render() {
     return (
       <div>
-        <form action="">
+        <form onSubmit={this.handleSubmit}>
           <input
-            type="text"
+            type="email"
             placeholder="Enter Email"
             value={this.state.email}
+            name='email'
+            onChange={this.handleInput}
           />
           <input
-            type="text"
+            type="password"
             placeholder="Enter Password"
             value={this.state.password}
+            name='password'
+            onChange={this.handleInput}
+
           />
           <button>Submit</button>
         </form>

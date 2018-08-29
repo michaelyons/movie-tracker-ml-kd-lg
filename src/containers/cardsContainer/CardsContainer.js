@@ -15,7 +15,7 @@ class CardsContainer extends Component {
 }
 
 const mapStateToProps = (card) => ({
-  data: card.addCardReducer
+  data: card.displayMovieCardsReducer
 })
 
 // const mapDispatchToProps = (dispatch) => ({

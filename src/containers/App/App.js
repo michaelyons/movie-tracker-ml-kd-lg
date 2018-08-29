@@ -5,13 +5,16 @@ import './App.css';
 import { key } from '../../helpers/key.js';
 import { firstFetch } from '../../helpers/fetch.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
-import SearchForm from '../../components/searchForm/SearchForm.js';
+import { Login } from '../../components/login/Login.js'
 
 
 class App extends Component {  
   componentDidMount = async () => {
     const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1/`
-    
+    this.makeFetch(url)
+  }
+
+  makeFetch = async (url) => {
     const data = await firstFetch(url)
     this.props.makeCards(data)
   }
@@ -21,7 +24,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to MovieTracker</h1>
-          <SearchForm />
+          <Login />
         </header>
         <CardsContainer />
       </div>

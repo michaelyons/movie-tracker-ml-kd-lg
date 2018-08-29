@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { loginUser } from '../../helpers'
 
 class UserLogin extends Component {
   constructor() {
@@ -51,14 +52,9 @@ class UserLogin extends Component {
             name='password'
             onChange={this.handleInput}
           />
-          <button disabled={!this.validateUserInputForm()}>Submit</button>
+          <button disabled={!this.validateUserInputForm()}>Login</button>
         </form>
-        <div id='message1'>
-          <h3>Email and Password do not match</h3>
-        </div>
-        <div id='message2'>
-          <h3>Email has already been used</h3>
-        </div>
+          <button>Register</button>
       </div>
     );
   }

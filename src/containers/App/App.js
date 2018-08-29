@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { movieCard } from '../../actions/makeMovies.js';
 import './App.css';
-import { firstFetch } from '../../helpers/fetch.js';
+import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
-import { LoginButtons } from '../../components/loginButtons/LoginButtons.js';
 import { Route, Switch } from 'react-router-dom';
 import UserLogin from '../../components/userLogin/UserLogin.js';
+import UserSignup from '../../components/userSignup/UserSignup';
 
 class App extends Component {
   componentDidMount = async () => {
     const data = 'now_playing';
-    this.makeFetch(data);
+    this.setCurrentMovieCategoryGlobalState(data);
   };
 
-  makeFetch = async url => {
-    const data = await firstFetch(url);
+  setCurrentMovieCategoryGlobalState = async currentMovieData => {
+    const data = await currentMovieCategoryFetch(currentMovieData);
     this.props.makeCards(data);
   };
 
@@ -27,15 +27,15 @@ class App extends Component {
           <Route
             path="/"
             render={() => {
-              return <LoginButtons />;
-            }}
-          />
-          <Route
-            path="/login"
-            render={() => {
               return <UserLogin />;
             }}
           />
+         <Route
+            path="/login"
+            render={() => {
+              return <UserSignup />;
+            }} 
+          /> 
         </header>
         <main>
           <Route

@@ -8,7 +8,7 @@ export const Card = ({title, overview, rating}) => {
       <h2>{title}</h2>
       <h3>Rating: {rating}</h3>
       <p>{overview}</p>
-      <button>FAV</button>
+      <button>FAVORITE</button>
     </div>
     )
 }

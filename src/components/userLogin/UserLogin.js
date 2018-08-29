@@ -16,11 +16,13 @@ class UserLogin extends Component {
 
   handleInput = (event) => {
     const { name, value } = event.target
-
     this.setState({
       [name]: value
     })
+  }
 
+  validateUserInputForm = () => {
+    return (this.state.email.length > 8 && this.state.password.length > 6)
   }
 
   render() {
@@ -40,10 +42,15 @@ class UserLogin extends Component {
             value={this.state.password}
             name='password'
             onChange={this.handleInput}
-
           />
-          <button>Submit</button>
+          <button disabled={!this.validateUserInputForm()}>Submit</button>
         </form>
+        <div id='message1'>
+          <h3>Email and Password do not match</h3>
+        </div>
+        <div id='message2'>
+          <h3>Email has already been used</h3>
+        </div>
       </div>
     );
   }

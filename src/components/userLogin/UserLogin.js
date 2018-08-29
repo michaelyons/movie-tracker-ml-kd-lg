@@ -9,9 +9,17 @@ class UserLogin extends Component {
     };
   }
 
-  handleSubmit = (event) => {
+  loginUser = async (event) => {
     event.preventDefault();
-
+    const { email, password } = this.state
+    const response = await fetch('http://localhost:3000/users/', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    console.log(response)
   }
 
   handleInput = (event) => {
@@ -28,7 +36,7 @@ class UserLogin extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.loginUser}>
           <input
             type="email"
             placeholder="Enter Email"

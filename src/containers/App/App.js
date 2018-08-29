@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { movieCard } from '../../actions/makeMovies.js';
 import './App.css';
-import { key } from '../../helpers/key.js';
 import { firstFetch } from '../../helpers/fetch.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
 import { Login } from '../../components/login/Login.js';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
   componentDidMount = async () => {
-    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1/`;
-    this.makeFetch(url);
+    const data = 'now_playing';
+    this.makeFetch(data);
   };
 
   makeFetch = async url => {
@@ -25,7 +25,12 @@ class App extends Component {
           <h1 className="App-title">Welcome to MovieTracker</h1>
           <Login />
         </header>
-        <CardsContainer />
+        <Route
+          path="/"
+          render={() => {
+            return <CardsContainer />;
+          }}
+        />
       </div>
     );
   }

@@ -8,7 +8,9 @@ class CardsContainer extends Component {
   render() {
     return (
       <div className='cards-container' >
-        { this.props.data.map(card => <Card {...card}/> ) }
+        { this.props.data.map(card => <Card {...card}
+                                            key={card.id}
+          /> ) }
       </div>
     )
   }

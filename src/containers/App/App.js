@@ -16,6 +16,7 @@ class App extends Component {
 
   makeFetch = async url => {
     const data = await firstFetch(url);
+    // console.log(data)
     this.props.makeCards(data);
   };
 

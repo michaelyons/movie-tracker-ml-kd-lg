@@ -26,4 +26,4 @@ Install the dependencies -> `npm install` -> Start server -> `npm start` -> Once
 ### Authors
 [Michael Lyons](https://github.com/michaelyons),
 [Lee Graham](https://github.com/TwirlingGoddess),
-[Kiel Dehnert] (https://github.com/kielzor)
+[Kiel Dehnert](https://github.com/kielzor)

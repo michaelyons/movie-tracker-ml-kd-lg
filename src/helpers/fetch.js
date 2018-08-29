@@ -7,3 +7,10 @@ export const firstFetch = async currentMovieData => {
   const movies = await response.json();
   return await cleanMovies(movies);
 };
+
+// export const setMovieData = (currentMovieData) => {
+//   let currentMovieType;
+//   switch(currentMovieData) {
+//     case: ''
+//   }
+// }

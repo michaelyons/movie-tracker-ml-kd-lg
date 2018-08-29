@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { movieCard } from '../../actions/makeMovies.js';
 import './App.css';
-import { key } from '../../helpers/key.js';
 import { firstFetch } from '../../helpers/fetch.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
-import { Login } from '../../components/login/Login.js';
+import { LoginButtons } from '../../components/loginButtons/LoginButtons.js';
+import { Route, Switch } from 'react-router-dom';
+import UserLogin from '../../components/userLogin/UserLogin.js';
 
 class App extends Component {
   componentDidMount = async () => {
-    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1/`;
-    this.makeFetch(url);
+    const data = 'now_playing';
+    this.makeFetch(data);
   };
 
   makeFetch = async url => {
@@ -23,9 +24,27 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to MovieTracker</h1>
-          <Login />
+          <Route
+            path="/"
+            render={() => {
+              return <LoginButtons />;
+            }}
+          />
+          <Route
+            path="/login"
+            render={() => {
+              return <UserLogin />;
+            }}
+          />
         </header>
-        <CardsContainer />
+        <main>
+          <Route
+            path="/"
+            render={() => {
+              return <CardsContainer />;
+            }}
+          />
+        </main>
       </div>
     );
   }

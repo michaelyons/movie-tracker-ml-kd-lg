@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-export class Login extends Component {
+export class LoginButtons extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       clicked: null
-    }
+    };
   }
 
   render() {
-    return(
+    return (
       <div>
         <button>Login</button>
         <button>Sign Up</button>
       </div>
-    )
+    );
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { movieCard } from '../../actions/index.js';
+import { movieCard, addFavorites } from '../../actions/index.js';
 import './App.css';
 import {
   currentMovieCategoryFetch,
@@ -10,7 +10,6 @@ import CardsContainer from '../cardsContainer/CardsContainer';
 import { Route, Switch } from 'react-router-dom';
 import UserLogin from '../../components/userLogin/UserLogin.js';
 import UserSignup from '../../components/userSignup/UserSignup';
-import { userInfo } from 'os';
 
 class App extends Component {
   componentDidMount = async () => {
@@ -25,10 +24,9 @@ class App extends Component {
 
   viewFavoritesPage = async () => {
     const user_id = this.props.id.data.id;
-    console.log(user_id);
     const url = `http://localhost:3000/api/users/${user_id}/favorites`;
     const userFavoritesData = await viewFavoritesFetchCall(url);
-    console.log(userFavoritesData);
+    this.props.addFavoriteMovie(userFavoritesData);
   };
 
   render() {
@@ -74,7 +72,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  makeCards: movieArray => dispatch(movieCard(movieArray))
+  makeCards: movieArray => dispatch(movieCard(movieArray)),
+  addFavoriteMovie: favorite => dispatch(addFavorites(favorite))
 });
 
 export default connect(

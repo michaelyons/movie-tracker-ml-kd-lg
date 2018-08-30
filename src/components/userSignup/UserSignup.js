@@ -15,7 +15,12 @@ class UserSignup extends Component {
     event.preventDefault();
     const { name, email, password } = this.state;
     const data = await newUserFetchCall(name, email, password);
-    console.log(data);
+    this.setState({
+      name: '',
+      email: '',
+      password: ''
+    });
+    return data;
   };
 
   handleChange = event => {

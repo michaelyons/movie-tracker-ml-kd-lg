@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { movieCard } from '../actions/makeMovies.js';
 import { Card } from '../../components/card/Card.js';
 import './CardsContainer.css';
 import { addFavorite } from '../../helpers.js';
+import { addFavorites } from '../../actions/index.js';
 
 class CardsContainer extends Component {
-  saveFavorite = async (id, title, image, date, rating, overview) => {
-    const userId = this.props.id.data.id
-    console.log(userId)
-    const response = await addFavorite(id, userId, title, image, date, rating, overview)
-  }
+  saveFavorite = (id, title, image, date, rating, overview) => {
+    const userId = this.props.id.data.id;
+    addFavorite(id, userId, title, image, date, rating, overview);
+    this.props.addFavoriteMovie(title);
+  };
 
   render() {
     return (
@@ -28,8 +28,11 @@ const mapStateToProps = card => ({
   id: card.loginUserReducer
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   makeCards: ((movieArray) => dispatch(movieCard(movieArray)))
-// })
+const mapDispatchToProps = dispatch => ({
+  addFavoriteMovie: favorite => dispatch(addFavorites(favorite))
+});
 
-export default connect(mapStateToProps)(CardsContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CardsContainer);

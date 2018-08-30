@@ -7,8 +7,9 @@ import { addFavorite } from '../../helpers.js';
 
 class CardsContainer extends Component {
   saveFavorite = async (id, title, image, date, rating, overview) => {
-    const response = await addFavorite(id, 1, title, image, date, rating, overview)
-    console.log(response)
+    const userId = this.props.id.data.id
+    console.log(userId)
+    const response = await addFavorite(id, userId, title, image, date, rating, overview)
   }
 
   render() {
@@ -23,7 +24,8 @@ class CardsContainer extends Component {
 }
 
 const mapStateToProps = card => ({
-  data: card.displayMovieCardsReducer
+  data: card.displayMovieCardsReducer,
+  id: card.loginUserReducer
 });
 
 // const mapDispatchToProps = (dispatch) => ({

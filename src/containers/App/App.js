@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { movieCard, addFavorites } from '../../actions/index.js';
+import { movieCard } from '../../actions/index.js';
 import './App.css';
-import {
-  currentMovieCategoryFetch,
-  viewFavoritesFetchCall
-} from '../../helpers.js';
+import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
 import { Route, Switch } from 'react-router-dom';
 import UserLogin from '../../components/userLogin/UserLogin.js';
 import UserSignup from '../../components/userSignup/UserSignup';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      clicked: false
+    };
+  }
+
   componentDidMount = async () => {
     const data = 'now_playing';
     this.setCurrentMovieCategoryGlobalState(data);
@@ -22,11 +26,10 @@ class App extends Component {
     this.props.makeCards(data);
   };
 
-  viewFavoritesPage = async () => {
-    const user_id = this.props.id.data.id;
-    const url = `http://localhost:3000/api/users/${user_id}/favorites`;
-    const userFavoritesData = await viewFavoritesFetchCall(url);
-    this.props.addFavoriteMovie(userFavoritesData);
+  setFavoritesState = () => {
+    this.setState({
+      clicked: true
+    });
   };
 
   render() {
@@ -49,7 +52,7 @@ class App extends Component {
               return <UserSignup />;
             }}
           />
-          <button onClick={() => this.viewFavoritesPage()}>
+          <button onClick={() => this.setFavoritesState()}>
             View Favorites
           </button>
         </header>
@@ -57,7 +60,7 @@ class App extends Component {
           <Route
             path="/"
             render={() => {
-              return <CardsContainer />;
+              return <CardsContainer clicked={this.state.clicked} />;
             }}
           />
         </main>
@@ -72,8 +75,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  makeCards: movieArray => dispatch(movieCard(movieArray)),
-  addFavoriteMovie: favorite => dispatch(addFavorites(favorite))
+  makeCards: movieArray => dispatch(movieCard(movieArray))
 });
 
 export default connect(

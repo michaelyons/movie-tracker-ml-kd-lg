@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { movieCard } from '../../actions/makeMovies.js';
+import { movieCard } from '../../actions/index.js';
 import './App.css';
 import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
@@ -20,9 +20,13 @@ class App extends Component {
   };
 
   render() {
+    // console.log(this.props.loggedInUser);
     return (
       <div className="App">
         <header className="App-header">
+          {/* {this.props.loggedInUser.length && (
+            <h1>{this.props.loggedInUser.name}</h1>
+          )} */}
           <h1 className="App-title">Welcome to MovieTracker</h1>
           <Route
             path="/"
@@ -50,15 +54,15 @@ class App extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//    state
-// })
+const mapStateToProps = state => ({
+  loggedInUser: state
+});
 
 const mapDispatchToProps = dispatch => ({
   makeCards: movieArray => dispatch(movieCard(movieArray))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App);

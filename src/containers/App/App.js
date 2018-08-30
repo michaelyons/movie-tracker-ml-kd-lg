@@ -20,13 +20,13 @@ class App extends Component {
   };
 
   render() {
-    // console.log(this.props.loggedInUser);
+    // console.log(this.props.loggedInUser.loginUserReducer.data);
     return (
       <div className="App">
         <header className="App-header">
-          {/* {this.props.loggedInUser.length && (
-            <h1>{this.props.loggedInUser.name}</h1>
-          )} */}
+          {/* {this.props.loggedInUser !== {} && 
+            <h1 className='header-name'>{this.props.loggedInUser.loginUserReducer.data}</h1>
+          } */}
           <h1 className="App-title">Welcome to MovieTracker</h1>
           <Route
             path="/"

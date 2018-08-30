@@ -21,6 +21,10 @@ class UserLogin extends Component {
           'Content-Type': 'application/json'
         }
       });
+      this.setState({
+        email: '',
+        password: ''
+      });
       return await response.json();
     } catch (error) {
       alert('fuckyou');

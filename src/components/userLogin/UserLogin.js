@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import { loginUser } from '../../helpers'
+import { connect } from 'react-redux';
+import { userLogin } from '../../actions/index';
 
 class UserLogin extends Component {
   constructor() {
@@ -25,7 +26,8 @@ class UserLogin extends Component {
         email: '',
         password: ''
       });
-      return await response.json();
+      const data = await response.json();
+      this.props.loggedInUser(data);
     } catch (error) {
       alert('fuckyou');
     }
@@ -68,4 +70,11 @@ class UserLogin extends Component {
   }
 }
 
-export default UserLogin;
+const mapDispatchToProps = dispatch => ({
+  loggedInUser: user => dispatch(userLogin(user))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(UserLogin);

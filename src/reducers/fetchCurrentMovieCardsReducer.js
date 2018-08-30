@@ -1,8 +1,4 @@
-const initialState = {
-  currentMovies: []
-};
-
-export const fetchCurrentMovieCardsReducer = (state = initialState, action) => {
+export const fetchCurrentMovieCardsReducer = (state = [], action) => {
   switch (action.type) {
     case 'NOW_PLAYING':
       return {

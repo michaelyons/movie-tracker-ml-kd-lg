@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { movieCard } from '../../actions/makeMovies.js';
+import { movieCard } from '../../actions/index.js';
 import './App.css';
 import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';

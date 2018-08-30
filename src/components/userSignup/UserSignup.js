@@ -18,7 +18,6 @@ class UserSignup extends Component {
     event.preventDefault();
     const { name, email, password } = this.state;
     const data = await newUserFetchCall(name, email, password);
-    this.props.newUser(this.state);
     this.setState({
       name: '',
       email: '',
@@ -68,11 +67,4 @@ class UserSignup extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  newUser: user => dispatch(userLogin(user))
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(UserSignup);
+export default UserSignup;

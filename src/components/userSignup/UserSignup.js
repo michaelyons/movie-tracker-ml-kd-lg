@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { newUserFetchCall } from '../../helpers.js';
+import { userLogin } from '../../actions/index.js';
+import UserLogin from '../userLogin/UserLogin';
+import { connect } from 'react-redux';
 
 class UserSignup extends Component {
   constructor() {
@@ -15,6 +18,7 @@ class UserSignup extends Component {
     event.preventDefault();
     const { name, email, password } = this.state;
     const data = await newUserFetchCall(name, email, password);
+    this.props.newUser(this.state);
     this.setState({
       name: '',
       email: '',
@@ -64,4 +68,11 @@ class UserSignup extends Component {
   }
 }
 
-export default UserSignup;
+const mapDispatchToProps = dispatch => ({
+  newUser: user => dispatch(userLogin(user))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(UserSignup);

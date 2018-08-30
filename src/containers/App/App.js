@@ -30,12 +30,12 @@ class App extends Component {
               return <UserLogin />;
             }}
           />
-         <Route
+          <Route
             path="/login"
             render={() => {
               return <UserSignup />;
-            }} 
-          /> 
+            }}
+          />
         </header>
         <main>
           <Route

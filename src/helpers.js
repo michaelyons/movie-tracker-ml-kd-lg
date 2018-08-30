@@ -20,21 +20,28 @@ export const cleanMovies = async data => {
 };
 
 export const newUserFetchCall = async (name, email, password) => {
-  const url = 'http://localhost:3000/api/users/new'
-  const response = await fetch(
-    url,
-    { 
+  const url = 'http://localhost:3000/api/users/new';
+  try {
+    const response = await fetch(url, {
       method: 'POST',
-      body: JSON.stringify({ name, email, password }),
-      header: {'Content-Type': 'application/json'} 
-    })
-    console.log(response)
-    const data = await response.json()
-
-    return await data
+      body: JSON.stringify({
+        name: name,
+        password: password,
+        email: email
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw new Error('fuckyou');
+    }
+  } catch (error) {
+    alert(error.message);
   }
-
-
+};
 
 // export const setMovieData = (currentMovieData) => {
 //   let currentMovieType;

@@ -10,29 +10,33 @@ class UserLogin extends Component {
     };
   }
 
-  loginUser = async (event) => {
+  loginUser = async event => {
     event.preventDefault();
-    const { email, password } = this.state
-    const response = await fetch('http://localhost:3000/api/users/', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    return await response.json()
-  }
+    const { email, password } = this.state;
+    try {
+      const response = await fetch('http://localhost:3000/api/users/', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return await response.json();
+    } catch (error) {
+      alert('fuckyou');
+    }
+  };
 
-  handleInput = (event) => {
-    const { name, value } = event.target
+  handleInput = event => {
+    const { name, value } = event.target;
     this.setState({
       [name]: value
-    })
-  }
+    });
+  };
 
   validateUserInputForm = () => {
-    return (this.state.email.length > 8 && this.state.password.length > 6)
-  }
+    return this.state.email.length > 8 && this.state.password.length > 6;
+  };
 
   render() {
     return (
@@ -42,19 +46,19 @@ class UserLogin extends Component {
             type="email"
             placeholder="Enter Email"
             value={this.state.email}
-            name='email'
+            name="email"
             onChange={this.handleInput}
           />
           <input
             type="password"
             placeholder="Enter Password"
             value={this.state.password}
-            name='password'
+            name="password"
             onChange={this.handleInput}
           />
           <button disabled={!this.validateUserInputForm()}>Login</button>
         </form>
-          <button>Register</button>
+        <button>Register</button>
       </div>
     );
   }

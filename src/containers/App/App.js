@@ -9,6 +9,13 @@ import UserLogin from '../../components/userLogin/UserLogin.js';
 import UserSignup from '../../components/userSignup/UserSignup';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      clicked: false
+    };
+  }
+
   componentDidMount = async () => {
     const data = 'now_playing';
     this.setCurrentMovieCategoryGlobalState(data);
@@ -19,8 +26,13 @@ class App extends Component {
     this.props.makeCards(data);
   };
 
+  setFavoritesState = () => {
+    this.setState({
+      clicked: true
+    });
+  };
+
   render() {
-    // console.log(this.props.loggedInUser.loginUserReducer.data);
     return (
       <div className="App">
         <header className="App-header">
@@ -40,12 +52,15 @@ class App extends Component {
               return <UserSignup />;
             }}
           />
+          <button onClick={() => this.setFavoritesState()}>
+            View Favorites
+          </button>
         </header>
         <main>
           <Route
             path="/"
             render={() => {
-              return <CardsContainer />;
+              return <CardsContainer clicked={this.state.clicked} />;
             }}
           />
         </main>
@@ -55,7 +70,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  loggedInUser: state
+  loggedInUser: state,
+  id: state.loginUserReducer
 });
 
 const mapDispatchToProps = dispatch => ({

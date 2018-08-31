@@ -1,4 +1,4 @@
-import { key } from './key';
+import { key } from './helpers/key';
 
 export const currentMovieCategoryFetch = async currentMovieData => {
   const url = `https://api.themoviedb.org/3/movie/${currentMovieData}?api_key=${key}&language=en-US&page=1/`;

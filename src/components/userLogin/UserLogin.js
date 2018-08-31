@@ -27,6 +27,7 @@ class UserLogin extends Component {
         password: ''
       });
       const data = await response.json();
+      this.storeUserLogin(data.data)
       this.props.loggedInUser(data);
     } catch (error) {
       alert('fuckyou');
@@ -43,6 +44,15 @@ class UserLogin extends Component {
   validateUserInputForm = () => {
     return this.state.email.length > 8 && this.state.password.length > 6;
   };
+
+  storeUserLogin = (object) => {
+    const user = `currentUser${object.id}`
+    const stringifiedUser = JSON.stringify(object)
+    localStorage.setItem(user, stringifiedUser)
+    // this.retrieveUserLogin(user)
+  }
+
+
 
   render() {
     return (

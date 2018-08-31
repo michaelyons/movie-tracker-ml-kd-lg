@@ -5,7 +5,7 @@ import './App.css';
 import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
 import { Route, Switch } from 'react-router-dom';
-import UserLogin from '../../components/userLogin/UserLogin.js';
+import UserLogin from '../userLogin/UserLogin';
 import UserSignup from '../../components/userSignup/UserSignup';
 
 class App extends Component {

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from '../../components/card/Card.js';
 import './CardsContainer.css';
-import { addFavorite, viewFavoritesFetchCall } from '../../helpers.js';
-import { addFavorites } from '../../actions/index.js';
+import { addFavorite } from '../../helpers.js';
+import { addFavorites } from '../../actions/index';
+
 
 class CardsContainer extends Component {
   saveFavorite = (id, title, image, date, rating, overview) => {
@@ -12,16 +13,25 @@ class CardsContainer extends Component {
     if (this.props.id.status === 'success') userId = this.props.id.data.id
     else return alert('Please log in to create favorites')
 
+    this.filterFavorites(id, userId, title, image, date, rating, overview)
+    const userFavoritesData = {
+      data: {
+        id, 
+        userId, 
+        title, 
+        image, 
+        date, 
+        rating, 
+        overview}}
     addFavorite(id, userId, title, image, date, rating, overview);
-    this.viewFavoritesPage();
-  };
-
-  viewFavoritesPage = async () => {
-    const user_id = this.props.id.data.id;
-    const url = `http://localhost:3000/api/users/${user_id}/favorites`;
-    const userFavoritesData = await viewFavoritesFetchCall(url);
     this.props.addFavoriteMovie(userFavoritesData);
   };
+
+  filterFavorites = (id, userId, title, image, date, rating, overview) => {
+    // if (this.props.favorit.data.id)
+    
+    console.log(this.props.favorite)
+  }
 
   render() {
     return (
@@ -47,9 +57,6 @@ const mapStateToProps = card => ({
 
 const mapDispatchToProps = dispatch => ({
   addFavoriteMovie: favorite => dispatch(addFavorites(favorite))
-});
+})
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CardsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CardsContainer);

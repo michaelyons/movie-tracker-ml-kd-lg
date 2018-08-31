@@ -49,10 +49,17 @@ class UserLogin extends Component {
     const user = `currentUser${object.id}`
     const stringifiedUser = JSON.stringify(object)
     localStorage.setItem(user, stringifiedUser)
-    // this.retrieveUserLogin(user)
+    this.retrieveUserLogin(user)
   }
 
-
+  retrieveUserLogin = (string) => {
+    const retrievedUser = localStorage.getItem(string)
+    const parsedUser = JSON.parse(retrievedUser)
+    this.setState({
+      email: parsedUser.email,
+      password: parsedUser.password
+    })
+  }
 
   render() {
     return (

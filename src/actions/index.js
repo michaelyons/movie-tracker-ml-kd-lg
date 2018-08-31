@@ -11,3 +11,10 @@ export const userLogin = user => {
     user
   };
 };
+
+export const addFavorites = favorite => {
+  return {
+    type: 'ADD_FAVORITE',
+    favorite
+  };
+};

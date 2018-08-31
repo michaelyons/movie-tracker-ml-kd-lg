@@ -20,6 +20,12 @@ export const cleanMovies = async data => {
   });
 };
 
+export const viewFavoritesFetchCall = async url => {
+  const response = await fetch(url);
+  const favoritesData = await response.json();
+  return favoritesData;
+};
+
 export const newUserFetchCall = async (name, email, password) => {
   const url = 'http://localhost:3000/api/users/new';
   try {
@@ -44,34 +50,41 @@ export const newUserFetchCall = async (name, email, password) => {
   }
 };
 
-export const addFavorite = async (movie_id, user_id, title, poster_path, release_date, vote_average, overview) => {
-  const url = 'http://localhost:3000/api/users/favorites/new'
+export const addFavorite = async (
+  movie_id,
+  user_id,
+  title,
+  poster_path,
+  release_date,
+  vote_average,
+  overview
+) => {
+  const url = 'http://localhost:3000/api/users/favorites/new';
   try {
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
-        movie_id, 
+        movie_id,
         user_id,
-        title, 
-        poster_path, 
-        release_date, 
-        vote_average, 
+        title,
+        poster_path,
+        release_date,
+        vote_average,
         overview
       }),
       headers: {
         'Content-Type': 'application/json'
       }
-    })
+    });
     if (response.ok) {
-      return await response.json()
+      return await response.json();
     } else {
-      throw new Error('FUUUUUUUCK')
+      throw new Error('FUUUUUUUCK');
     }
   } catch (error) {
-    alert(error.message)
+    alert(error.message);
   }
-
-}
+};
 
 // export const setMovieData = (currentMovieData) => {
 //   let currentMovieType;

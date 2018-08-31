@@ -7,7 +7,11 @@ import { addFavorites } from '../../actions/index.js';
 
 class CardsContainer extends Component {
   saveFavorite = (id, title, image, date, rating, overview) => {
-    const userId = this.props.id.data.id;
+    let userId;
+
+    if (this.props.id.status === 'success') userId = this.props.id.data.id
+    else return alert('Please log in to create favorites')
+
     addFavorite(id, userId, title, image, date, rating, overview);
     this.viewFavoritesPage();
   };

@@ -46,16 +46,17 @@ class App extends Component {
               return <UserLogin />;
             }}
           />
+          <button onClick={() => this.setFavoritesState()}>
+            View Favorites
+          </button>
+        </header>
           <Route
             path="/login"
             render={() => {
               return <UserSignup />;
             }}
           />
-          <button onClick={() => this.setFavoritesState()}>
-            View Favorites
-          </button>
-        </header>
+        
         <main>
           <Route
             path="/"

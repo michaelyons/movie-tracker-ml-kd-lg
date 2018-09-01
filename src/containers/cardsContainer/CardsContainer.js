@@ -13,25 +13,37 @@ class CardsContainer extends Component {
     if (this.props.id.status === 'success') userId = this.props.id.data.id
     else return alert('Please log in to create favorites')
 
-    this.filterFavorites(id, userId, title, image, date, rating, overview)
     const userFavoritesData = {
-      data: {
         id, 
         userId, 
         title, 
         image, 
         date, 
         rating, 
-        overview}}
-    addFavorite(id, userId, title, image, date, rating, overview);
-    this.props.addFavoriteMovie(userFavoritesData);
-  };
-
-  filterFavorites = (id, userId, title, image, date, rating, overview) => {
-    // if (this.props.favorit.data.id)
+        overview
+      }
+      this.filterFavorites(id, userId, title, image, date, rating, overview, userFavoritesData)
+    };
     
-    console.log(this.props.favorite)
-  }
+    filterFavorites = (id, userId, title, image, date, rating, overview, userFavoritesData) => {
+      let counter = 0;
+
+      this.props.favorite.forEach(favorite => {
+        // favorite.data.forEach(fave => {
+          if (id === favorite.movie_id) {
+            console.log('match')
+            counter++
+            return
+          }
+        })
+      // }) 
+
+      if (counter === 0) {
+        console.log('no matches')
+        addFavorite(id, userId, title, image, date, rating, overview);
+        this.props.addFavoriteMovie(userFavoritesData);
+      }
+    }
 
   render() {
     return (
@@ -56,7 +68,7 @@ const mapStateToProps = card => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addFavoriteMovie: favorite => dispatch(addFavorites(favorite))
+  addFavoriteMovie: favorite => dispatch(addFavorites(favorite)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardsContainer);

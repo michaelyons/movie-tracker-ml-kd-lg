@@ -50,13 +50,13 @@ class App extends Component {
             View Favorites
           </button>
         </header>
-          <Route
-            path="/login"
-            render={() => {
-              return <UserSignup />;
-            }}
-          />
-        
+        <Route
+          path="/login"
+          render={() => {
+            return <UserSignup />;
+          }}
+        />
+
         <main>
           <Route
             path="/"

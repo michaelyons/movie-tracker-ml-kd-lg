@@ -36,9 +36,6 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/* {this.props.loggedInUser !== {} && 
-            <h1 className='header-name'>{this.props.loggedInUser.loginUserReducer.data}</h1>
-          } */}
           <h1 className="App-title">Welcome to MovieTracker</h1>
           <Route
             path="/"
@@ -50,13 +47,13 @@ class App extends Component {
             View Favorites
           </button>
         </header>
-          <Route
-            path="/login"
-            render={() => {
-              return <UserSignup />;
-            }}
-          />
-        
+        <Route
+          path="/login"
+          render={() => {
+            return <UserSignup />;
+          }}
+        />
+
         <main>
           <Route
             path="/"

@@ -68,7 +68,7 @@ class CardsContainer extends Component {
             <Card {...card} key={card.id} saveFavorite={this.saveFavorite} />
           ))}
         {this.props.clicked &&
-          this.props.favorite.data.map(card => (
+          this.props.favorite.map(card => (
             <Card {...card} key={card.id} saveFavorite={this.saveFavorite} />
           ))}
       </div>

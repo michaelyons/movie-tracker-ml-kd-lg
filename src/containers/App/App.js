@@ -36,9 +36,6 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/* {this.props.loggedInUser !== {} && 
-            <h1 className='header-name'>{this.props.loggedInUser.loginUserReducer.data}</h1>
-          } */}
           <h1 className="App-title">Welcome to MovieTracker</h1>
           <Route
             path="/"

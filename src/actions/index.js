@@ -25,3 +25,10 @@ export const populateFavorites = favorite => {
     favorite
   };
 };
+
+export const deleteFavorites = favorite => {
+  return {
+    type: 'DELETE_FAVORITE',
+    favorite
+  };
+};

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Card } from '../../components/card/Card.js';
 import './CardsContainer.css';
 import { addFavorite, deleteFavorite } from '../../helpers.js';
-import { addFavorites } from '../../actions/index';
+import { addFavorites, deleteFavorites } from '../../actions/index';
 
 class CardsContainer extends Component {
   saveFavorite = (id, title, image, date, rating, overview) => {
@@ -47,8 +47,8 @@ class CardsContainer extends Component {
 
     this.props.favorite.forEach(favorite => {
       if (title === favorite.title) {
-        console.log('match');
         deleteFavorite(id, userId);
+        this.props.deleteFavoriteMovie(userFavoritesData);
         counter++;
         return;
       }
@@ -83,7 +83,8 @@ const mapStateToProps = card => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addFavoriteMovie: favorite => dispatch(addFavorites(favorite))
+  addFavoriteMovie: favorite => dispatch(addFavorites(favorite)),
+  deleteFavoriteMovie: deleted => dispatch(deleteFavorites(deleted))
 });
 
 export default connect(

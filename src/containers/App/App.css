@@ -9,7 +9,10 @@
   background-color: #222;
   height: 150px;
   padding: 20px;
-  color: white; }
+  color: white;
+  display: flex;
+  width: 100%;
+  justify-content: space-between; }
 
 .App-title {
   font-size: 1.5em; }
@@ -25,3 +28,9 @@
     transform: rotate(0deg); }
   to {
     transform: rotate(360deg); } }
+
+.user-name {
+  color: white; }
+
+.user-buttons {
+  display: flex; }

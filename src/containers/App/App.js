@@ -42,74 +42,50 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to MovieTracker</h1>
-            <NavLink to="/favorites">
-              <button 
-                value="favorites" 
-                onClick={() => this.setFavoriteState()}>
-                  View Favorites
-              </button>
-            </NavLink>
-            <NavLink to="/">
-              <button
-                onClick={() => this.setDisplayedState("now_playing")}>
-                  Now Playing
-              </button>
-            </NavLink>
-            <NavLink to="/popular">
-              <button 
-                onClick={() => this.setDisplayedState("popular")}>
-                  Popular
-              </button>
-            </NavLink>
-            <NavLink to="/top_rated">
-              <button 
-                onClick={() => this.setDisplayedState("top_rated")}>
-                  Top Rated
-              </button>
-            </NavLink>
-            <NavLink to="/upcoming">
-              <button 
-                onClick={() => this.setDisplayedState("upcoming")}>
-                  Upcoming
-              </button>
-            </NavLink>        </header>
+          <NavLink to="/favorites">
+            <button 
+              value="favorites" 
+              onClick={() => this.setFavoriteState()}>
+                View Favorites
+            </button>
+          </NavLink>
+          <NavLink to="/">
+            <button
+              onClick={() => this.setDisplayedState("now_playing")}>
+                Now Playing
+            </button>
+          </NavLink>
+          <NavLink to="/popular">
+            <button 
+              onClick={() => this.setDisplayedState("popular")}>
+                Popular
+            </button>
+          </NavLink>
+          <NavLink to="/top_rated">
+            <button 
+              onClick={() => this.setDisplayedState("top_rated")}>
+                Top Rated
+            </button>
+          </NavLink>
+          <NavLink to="/upcoming">
+            <button 
+              onClick={() => this.setDisplayedState("upcoming")}>
+                Upcoming
+            </button>
+          </NavLink>        
+        </header>
         <main>
           <aside>
             <Link to="/login" className="login-nav">Log In</Link>
              -- or -- 
             <Link to="/signup" className="signup-nav">Sign Up</Link>
           </aside>
-        <Switch>
-            <Route
-              exact path="/login"
-              render={() => {
-                return( 
-                  <div>
-                    <UserLogin />
-                  </div>
-                )
-              }}
-            />
-            <Route
-              exact path="/signup"
-              render={() => {
-                return( 
-                  <div>
-                    <UserSignup />
-                  </div>
-                )
-              }}
-            />
-          <Route
-            exact path="/"
-            render={() => {
-              return <CardsContainer clicked={this.state.clicked} />;
-            }}
-          />
-          <Route exact path = '/upcoming' />
-          <Route exact path = '/popular' />
-          <Route exact path = '/top_rated' />
-        </Switch>
+          <Route exact path="/login" component={UserLogin} />
+          <Route exact path="/signup" component={UserSignup} />
+          <Route exact path="/" component={CardsContainer} />
+          <Route exact path = '/upcoming' component={CardsContainer} />
+          <Route exact path = '/popular' component={CardsContainer} />
+          <Route exact path = '/top_rated' component={CardsContainer} />
         </main>
       </div>
     );

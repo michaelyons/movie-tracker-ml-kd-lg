@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { newUserFetchCall } from '../../helpers.js';
-import { userLogin } from '../../actions/index.js';
-import UserLogin from '../../containers/userLogin/UserLogin';
-import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 class UserSignup extends Component {
   constructor() {
@@ -59,7 +57,9 @@ class UserSignup extends Component {
             name="password"
             onChange={this.handleChange}
           />
-          <button>Sign Up</button>
+          <NavLink to="/">
+            <button>Sign Up</button>
+          </NavLink>
         </form>
         <button>Cancel</button>
       </div>

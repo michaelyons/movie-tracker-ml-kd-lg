@@ -4,7 +4,7 @@ import { movieCard } from '../../actions/index.js';
 import './App.css';
 import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
-import { Route, Switch } from 'react-router-dom';
+import { Link, NavLink, Route, Switch, Redirect } from 'react-router-dom';
 import UserLogin from '../userLogin/UserLogin';
 import UserSignup from '../../components/userSignup/UserSignup';
 
@@ -12,7 +12,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      clicked: false
+      clicked: false,
+      cardGenre: ''
     };
   }
 
@@ -23,44 +24,80 @@ class App extends Component {
 
   setCurrentMovieCategoryGlobalState = async currentMovieData => {
     const data = await currentMovieCategoryFetch(currentMovieData);
+    console.log(data)
     this.props.makeCards(data);
   };
 
-  setFavoritesState = () => {
+  setFavoriteState = () => {
     this.setState({
       clicked: true
     });
   };
+    // this.setCurrentMovieCategoryGlobalState(value)
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to MovieTracker</h1>
-          <Route
-            path="/"
-            render={() => {
-              return <UserLogin />;
-            }}
-          />
-          <button onClick={() => this.setFavoritesState()}>
-            View Favorites
-          </button>
+          <Switch>
+            <Route
+              path="/login"
+              render={({match}) => {
+                return( 
+                  <div>
+                    <UserLogin />
+                  </div>
+                )
+              }}
+            />
+            <Route
+              path="/signup"
+              render={() => {
+                return( 
+                  <div>
+                    <UserSignup />
+                  </div>
+                )
+              }}
+            />
+            <NavLink to="/favorites">
+              <button 
+                value="favorites" 
+                onClick={() => this.setFavoriteState()}>
+                  View Favorites
+              </button>
+            </NavLink>
+            <NavLink to="/now_playing">
+              <button
+                value="now_playing" 
+                onClick={() => this.setDisplayedState()}>
+                  Now Playing
+              </button>
+            </NavLink>
+  {          // <NavLink to="/popular">
+            //   <button 
+            //     value="popular"
+            //     onClick={() => this.setDisplayedState()}>
+            //       Most Popular
+            //   </button>
+            // </NavLink>
+          }
+          </Switch>
         </header>
-        <Route
-          path="/login"
-          render={() => {
-            return <UserSignup />;
-          }}
-        />
-
         <main>
+          <aside>
+            <Link to="/login" replace={true} className="login-nav">Log In</Link>
+            or
+            <Link to="/signup" replace={true} className="signup-nav">Sign Up</Link>
+          </aside>
           <Route
-            path="/"
+            exact path="/"
             render={() => {
               return <CardsContainer clicked={this.state.clicked} />;
             }}
           />
+          <Redirect to='/' />
         </main>
       </div>
     );

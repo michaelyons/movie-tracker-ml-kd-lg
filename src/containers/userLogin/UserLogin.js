@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { userLogin } from '../../actions/index';
 import { viewFavoritesFetchCall } from '../../helpers'
 import { populateFavorites } from '../../actions/index';
+import { NavLink } from 'react-router-dom';
 
 
 class UserLogin extends Component {
@@ -77,6 +78,7 @@ class UserLogin extends Component {
     return (
       <div>
         <form onSubmit={this.loginUser}>
+          <h2>Log In</h2>
           <input
             type="email"
             placeholder="Enter Email"
@@ -91,9 +93,10 @@ class UserLogin extends Component {
             name="password"
             onChange={this.handleInput}
           />
-          <button disabled={!this.validateUserInputForm()}>Login</button>
+          <NavLink to="/">
+            <button disabled={!this.validateUserInputForm()}>Login</button>
+          </NavLink>
         </form>
-        <button>Register</button>
       </div>
     );
   }

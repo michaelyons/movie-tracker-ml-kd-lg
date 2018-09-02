@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { movieCard } from '../../actions/index.js';
+import { movieCard, userLogin } from '../../actions/index.js';
 import './App.css';
 import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
@@ -48,10 +48,24 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.id.data)
     return (
       <div className="App">
         <header className="App-header">
+          {!this.props.id.data && <div></div>}
+          {this.props.id.data && 
+            <div>
+              <h1 className='user-name'>Welcome {this.props.id.data.name}</h1>
+              <div className='user-buttons'>
+                <button onClick={() => this.setFavoritesState()}>
+                  View Favorites
+                </button>
+                <button onClick={() => this.props.logOutUser({})}>Sign Out</button>
+              </div>
+            </div>
+          }
           <h1 className="App-title">Welcome to MovieTracker</h1>
+
           <NavLink to="/favorites">
             <button 
               onClick={() => this.setFavoriteState()}>
@@ -82,6 +96,16 @@ class App extends Component {
                 Upcoming
             </button>
           </NavLink>        
+
+          <div>
+            <Route
+              path="/"
+              render={() => {
+                return <UserLogin />;
+              }}
+            />
+          </div>
+
         </header>
         <main>
           <aside>
@@ -114,7 +138,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  makeCards: movieArray => dispatch(movieCard(movieArray))
+  makeCards: movieArray => dispatch(movieCard(movieArray)),
+  logOutUser: user => dispatch(userLogin(user))
 });
 
 export default connect(

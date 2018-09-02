@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { userLogin } from '../../actions/index';
 import { viewFavoritesFetchCall } from '../../helpers'
-import { populateFavorites } from '../../actions/index';
 import { Redirect } from 'react-router-dom';
+import { addFavorites } from '../../actions/index';
+
 
 class UserLogin extends Component {
   constructor() {
@@ -43,7 +44,8 @@ class UserLogin extends Component {
   viewFavoritesPage = async (user) => {
     const url = `http://localhost:3000/api/users/${user}/favorites`;
     const userFavoritesData = await viewFavoritesFetchCall(url);
-    this.props.populateMovieData(userFavoritesData);
+    userFavoritesData.forEach(data => this.props.populateMovieData(data))
+    ;
   };
 
 
@@ -113,7 +115,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  populateMovieData: favorite => dispatch(populateFavorites(favorite)),
+  populateMovieData: favorite => dispatch(addFavorites(favorite)),
   loggedInUser: user => dispatch(userLogin(user))
 });
 

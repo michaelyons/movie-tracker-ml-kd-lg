@@ -13,6 +13,7 @@ class App extends Component {
     super();
     this.state = {
       clicked: false,
+      loggedIn: false
     };
   }
 
@@ -33,8 +34,17 @@ class App extends Component {
   };
 
   setDisplayedState = async value => {
-    console.log(value)
     this.setCurrentMovieCategoryGlobalState(value)
+  }
+
+  clickedIt = () => {
+    this.setState({
+      loggedIn: true
+    })
+  }
+
+  signOut = () => {
+    window.location.reload(true);
   }
 
   render() {
@@ -44,7 +54,6 @@ class App extends Component {
           <h1 className="App-title">Welcome to MovieTracker</h1>
           <NavLink to="/favorites">
             <button 
-              value="favorites" 
               onClick={() => this.setFavoriteState()}>
                 View Favorites
             </button>
@@ -76,16 +85,23 @@ class App extends Component {
         </header>
         <main>
           <aside>
-            <Link to="/login" className="login-nav">Log In</Link>
+            <NavLink to="/login" className="login-nav" >
+            <button onClick={() => this.clickedIt()}>Log In</button>
+            </NavLink>
              -- or -- 
             <Link to="/signup" className="signup-nav">Sign Up</Link>
+             -- or -- 
+            <button onClick={() => this.signOut()}>Sign Out</button>
           </aside>
-          <Route exact path="/login" component={UserLogin} />
-          <Route exact path="/signup" component={UserSignup} />
-          <Route exact path="/" component={CardsContainer} />
+          <Route exact path='/login' component={UserLogin} />
+          <Route exact path='/signup' component={UserSignup} />
+          <Route exact path='/' component={CardsContainer} />
           <Route exact path = '/upcoming' component={CardsContainer} />
           <Route exact path = '/popular' component={CardsContainer} />
           <Route exact path = '/top_rated' component={CardsContainer} />
+          <Route exact path = '/favorites' render={() => {
+            return <CardsContainer clicked={this.state.clicked} />
+          }} />
         </main>
       </div>
     );

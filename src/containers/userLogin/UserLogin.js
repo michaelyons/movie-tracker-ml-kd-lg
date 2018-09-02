@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { userLogin } from '../../actions/index';
 import { viewFavoritesFetchCall } from '../../helpers'
 import { populateFavorites } from '../../actions/index';
+import { Redirect } from 'react-router-dom';
 
 class UserLogin extends Component {
   constructor() {
     super();
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      loggedIn: false
     };
   }
 
@@ -29,17 +31,17 @@ class UserLogin extends Component {
         password: ''
       });
       const data = await response.json();
+      console.log(data)
       this.storeUserLogin(data.data)
       this.props.loggedInUser(data);
+      await this.viewFavoritesPage(data.data.id);
     } catch (error) {
       alert('Email and Password do not match');
     }
-    await this.viewFavoritesPage();
   };
 
-  viewFavoritesPage = async () => {
-    const user_id = this.props.id.data.id;
-    const url = `http://localhost:3000/api/users/${user_id}/favorites`;
+  viewFavoritesPage = async (user) => {
+    const url = `http://localhost:3000/api/users/${user}/favorites`;
     const userFavoritesData = await viewFavoritesFetchCall(url);
     this.props.populateMovieData(userFavoritesData);
   };
@@ -67,12 +69,16 @@ class UserLogin extends Component {
     const retrievedUser = localStorage.getItem(string)
     const parsedUser = JSON.parse(retrievedUser)
     this.setState({
-      email: parsedUser.email,
-      password: parsedUser.password
+      loggedIn: true
     })
   }
 
+  
   render() {
+    const loggedInRedirect = this.state.loggedIn === true ?
+      <Redirect to='/' /> : 
+        <div></div>;
+    
     return (
       <div>
         <form onSubmit={this.loginUser}>
@@ -91,7 +97,11 @@ class UserLogin extends Component {
             name="password"
             onChange={this.handleInput}
           />
-            <button disabled={!this.validateUserInputForm()}>Login</button>
+
+          <button 
+            disabled={!this.validateUserInputForm()}
+          >Login</button>
+          {loggedInRedirect}
         </form>
       </div>
     );

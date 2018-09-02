@@ -2,21 +2,62 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from '../../components/card/Card.js';
 import './CardsContainer.css';
-import { addFavorite, viewFavoritesFetchCall } from '../../helpers.js';
-import { addFavorites } from '../../actions/index.js';
+import { addFavorite, deleteFavorite } from '../../helpers.js';
+import { addFavorites, deleteFavorites } from '../../actions/index';
 
 class CardsContainer extends Component {
   saveFavorite = (id, title, image, date, rating, overview) => {
-    const userId = this.props.id.data.id;
-    addFavorite(id, userId, title, image, date, rating, overview);
-    this.viewFavoritesPage();
+    let userId;
+
+    if (this.props.id.status === 'success') userId = this.props.id.data.id;
+    else return alert('Please log in to create favorites');
+
+    const userFavoritesData = {
+      id,
+      userId,
+      title,
+      image,
+      date,
+      rating,
+      overview
+    };
+    this.filterFavorites(
+      id,
+      userId,
+      title,
+      image,
+      date,
+      rating,
+      overview,
+      userFavoritesData
+    );
   };
 
-  viewFavoritesPage = async () => {
-    const user_id = this.props.id.data.id;
-    const url = `http://localhost:3000/api/users/${user_id}/favorites`;
-    const userFavoritesData = await viewFavoritesFetchCall(url);
-    this.props.addFavoriteMovie(userFavoritesData);
+  filterFavorites = (
+    id,
+    userId,
+    title,
+    image,
+    date,
+    rating,
+    overview,
+    userFavoritesData
+  ) => {
+    let counter = 0;
+
+    this.props.favorite.forEach(favorite => {
+      if (title === favorite.title) {
+        deleteFavorite(id, userId);
+        this.props.deleteFavoriteMovie(userFavoritesData);
+        counter++;
+        return;
+      }
+    });
+
+    if (counter === 0) {
+      addFavorite(id, userId, title, image, date, rating, overview);
+      this.props.addFavoriteMovie(userFavoritesData);
+    }
   };
 
   render() {
@@ -27,7 +68,7 @@ class CardsContainer extends Component {
             <Card {...card} key={card.id} saveFavorite={this.saveFavorite} />
           ))}
         {this.props.clicked &&
-          this.props.favorite.data.map(card => (
+          this.props.favorite.map(card => (
             <Card {...card} key={card.id} saveFavorite={this.saveFavorite} />
           ))}
       </div>
@@ -42,7 +83,8 @@ const mapStateToProps = card => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addFavoriteMovie: favorite => dispatch(addFavorites(favorite))
+  addFavoriteMovie: favorite => dispatch(addFavorites(favorite)),
+  deleteFavoriteMovie: deleted => dispatch(deleteFavorites(deleted))
 });
 
 export default connect(

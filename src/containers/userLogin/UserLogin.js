@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { userLogin } from '../../actions/index';
+import { viewFavoritesFetchCall } from '../../helpers'
+import { populateFavorites } from '../../actions/index';
+
 
 class UserLogin extends Component {
   constructor() {
@@ -32,7 +35,16 @@ class UserLogin extends Component {
     } catch (error) {
       alert('fuckyou');
     }
+    await this.viewFavoritesPage();
   };
+
+  viewFavoritesPage = async () => {
+    const user_id = this.props.id.data.id;
+    const url = `http://localhost:3000/api/users/${user_id}/favorites`;
+    const userFavoritesData = await viewFavoritesFetchCall(url);
+    this.props.populateMovieData(userFavoritesData);
+  };
+
 
   handleInput = event => {
     const { name, value } = event.target;
@@ -87,11 +99,16 @@ class UserLogin extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  id: state.loginUserReducer
+})
+
 const mapDispatchToProps = dispatch => ({
+  populateMovieData: favorite => dispatch(populateFavorites(favorite)),
   loggedInUser: user => dispatch(userLogin(user))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(UserLogin);

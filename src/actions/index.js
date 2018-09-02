@@ -18,3 +18,17 @@ export const addFavorites = favorite => {
     favorite
   };
 };
+
+export const populateFavorites = favorite => {
+  return {
+    type: 'POPULATE_FAVORITE',
+    favorite
+  };
+};
+
+export const deleteFavorites = favorite => {
+  return {
+    type: 'DELETE_FAVORITE',
+    favorite
+  };
+};

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { newUserFetchCall } from '../../helpers.js';
 import { userLogin } from '../../actions/index.js';
-import UserLogin from '../userLogin/UserLogin';
+import UserLogin from '../../containers/userLogin/UserLogin';
 import { connect } from 'react-redux';
 
 class UserSignup extends Component {

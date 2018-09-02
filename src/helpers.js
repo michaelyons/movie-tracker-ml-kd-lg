@@ -86,6 +86,29 @@ export const addFavorite = async (
   }
 };
 
+export const deleteFavorite = async (movie_id, user_id) => {
+  const url = `http://localhost:3000/api/users/${user_id}/favorites/${movie_id}`;
+  try {
+    const response = await fetch(url, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        movie_id,
+        user_id
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw new Error('Unable to Delete Favorite');
+    }
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
 // export const setMovieData = (currentMovieData) => {
 //   let currentMovieType;
 //   switch(currentMovieData) {

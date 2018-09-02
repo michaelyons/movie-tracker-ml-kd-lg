@@ -1,4 +1,4 @@
-import { key } from './key';
+import { key } from './helpers/key';
 
 export const currentMovieCategoryFetch = async currentMovieData => {
   const url = `https://api.themoviedb.org/3/movie/${currentMovieData}?api_key=${key}&language=en-US&page=1/`;
@@ -56,7 +56,7 @@ export const newUserFetchCall = async (name, email, password) => {
     if (response.ok) {
       return await response.json();
     } else {
-      throw new Error('fuckyou');
+      throw new Error('Email has already been used');
     }
   } catch (error) {
     alert(error.message);

@@ -6,7 +6,7 @@ export const Card = ({ id, title, overview, rating, image, date, saveFavorite })
   return (
     <div className="card">
       <h2>{title}</h2>
-      <img src={image} alt="movie image" />
+      <img src={image} alt="movie poster" />
       <h3>Rating: {rating}</h3>
       <p>{overview}</p>
       <p>{date}</p>
@@ -18,5 +18,8 @@ export const Card = ({ id, title, overview, rating, image, date, saveFavorite })
 Card.propTypes = {
   title: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired
+  rating: PropTypes.number.isRequired,
+  image: PropTypes.string,
+  date: PropTypes.string,
+  saveFavorite: PropTypes.func
 };

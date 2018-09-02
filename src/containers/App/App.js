@@ -4,7 +4,7 @@ import { movieCard, userLogin } from '../../actions/index.js';
 import './App.css';
 import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
-import { Route, Switch } from 'react-router-dom';
+import { Link, NavLink, Route, Switch } from 'react-router-dom';
 import UserLogin from '../userLogin/UserLogin';
 import UserSignup from '../../components/userSignup/UserSignup';
 
@@ -12,7 +12,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      clicked: false
+      clicked: false,
+      loggedIn: false
     };
   }
 
@@ -26,11 +27,25 @@ class App extends Component {
     this.props.makeCards(data);
   };
 
-  setFavoritesState = () => {
+  setFavoriteState = () => {
     this.setState({
       clicked: true
     });
   };
+
+  setDisplayedState = async value => {
+    this.setCurrentMovieCategoryGlobalState(value)
+  }
+
+  clickedIt = () => {
+    this.setState({
+      loggedIn: true
+    })
+  }
+
+  signOut = () => {
+    window.location.reload(true);
+  }
 
   render() {
     console.log(this.props.id.data)
@@ -50,6 +65,38 @@ class App extends Component {
             </div>
           }
           <h1 className="App-title">Welcome to MovieTracker</h1>
+
+          <NavLink to="/favorites">
+            <button 
+              onClick={() => this.setFavoriteState()}>
+                View Favorites
+            </button>
+          </NavLink>
+          <NavLink to="/">
+            <button
+              onClick={() => this.setDisplayedState("now_playing")}>
+                Now Playing
+            </button>
+          </NavLink>
+          <NavLink to="/popular">
+            <button 
+              onClick={() => this.setDisplayedState("popular")}>
+                Popular
+            </button>
+          </NavLink>
+          <NavLink to="/top_rated">
+            <button 
+              onClick={() => this.setDisplayedState("top_rated")}>
+                Top Rated
+            </button>
+          </NavLink>
+          <NavLink to="/upcoming">
+            <button 
+              onClick={() => this.setDisplayedState("upcoming")}>
+                Upcoming
+            </button>
+          </NavLink>        
+
           <div>
             <Route
               path="/"
@@ -58,21 +105,27 @@ class App extends Component {
               }}
             />
           </div>
-        </header>
-        <Route
-          path="/login"
-          render={() => {
-            return <UserSignup />;
-          }}
-        />
 
+        </header>
         <main>
-          <Route
-            path="/"
-            render={() => {
-              return <CardsContainer clicked={this.state.clicked} />;
-            }}
-          />
+          <aside>
+            <NavLink to="/login" className="login-nav" >
+            <button onClick={() => this.clickedIt()}>Log In</button>
+            </NavLink>
+             -- or -- 
+            <Link to="/signup" className="signup-nav">Sign Up</Link>
+             -- or -- 
+            <button onClick={() => this.signOut()}>Sign Out</button>
+          </aside>
+          <Route exact path='/login' component={UserLogin} />
+          <Route exact path='/signup' component={UserSignup} />
+          <Route exact path='/' component={CardsContainer} />
+          <Route exact path = '/upcoming' component={CardsContainer} />
+          <Route exact path = '/popular' component={CardsContainer} />
+          <Route exact path = '/top_rated' component={CardsContainer} />
+          <Route exact path = '/favorites' render={() => {
+            return <CardsContainer clicked={this.state.clicked} />
+          }} />
         </main>
       </div>
     );

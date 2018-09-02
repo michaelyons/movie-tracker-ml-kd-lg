@@ -58,7 +58,7 @@ class UserSignup extends Component {
             onChange={this.handleChange}
           />
           <NavLink to="/">
-            <button>Sign Up</button>
+          <button>Sign Up</button>
           </NavLink>
         </form>
         <button>Cancel</button>

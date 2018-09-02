@@ -93,9 +93,7 @@ class UserLogin extends Component {
             name="password"
             onChange={this.handleInput}
           />
-          <NavLink to="/">
             <button disabled={!this.validateUserInputForm()}>Login</button>
-          </NavLink>
         </form>
       </div>
     );

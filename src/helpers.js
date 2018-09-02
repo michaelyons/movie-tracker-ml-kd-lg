@@ -23,7 +23,20 @@ export const cleanMovies = async data => {
 export const viewFavoritesFetchCall = async url => {
   const response = await fetch(url);
   const favoritesData = await response.json();
-  return favoritesData;
+  return await cleanRefreshedMovies(favoritesData);
+};
+
+export const cleanRefreshedMovies = async data => {
+  return data.data.map(result => {
+    return {
+      title: result.title,
+      overview: result.overview,
+      rating: result.vote_average,
+      image: result.poster_path,
+      id: result.id,
+      date: result.release_date
+    };
+  });
 };
 
 export const newUserFetchCall = async (name, email, password) => {

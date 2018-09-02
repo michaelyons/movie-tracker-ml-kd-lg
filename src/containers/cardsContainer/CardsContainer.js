@@ -21,6 +21,7 @@ class CardsContainer extends Component {
       rating,
       overview
     };
+
     this.filterFavorites(
       id,
       userId,

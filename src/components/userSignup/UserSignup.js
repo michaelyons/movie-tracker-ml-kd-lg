@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { newUserFetchCall } from '../../helpers.js';
-import { NavLink } from 'react-router-dom';
 
 class UserSignup extends Component {
   constructor() {
@@ -57,9 +56,7 @@ class UserSignup extends Component {
             name="password"
             onChange={this.handleChange}
           />
-          <NavLink to="/">
           <button>Sign Up</button>
-          </NavLink>
         </form>
         <button>Cancel</button>
       </div>

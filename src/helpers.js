@@ -43,7 +43,7 @@ export const newUserFetchCall = async (name, email, password) => {
     if (response.ok) {
       return await response.json();
     } else {
-      throw new Error('fuckyou');
+      throw new Error('Email has already been used');
     }
   } catch (error) {
     alert(error.message);

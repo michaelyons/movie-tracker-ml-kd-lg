@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { userLogin } from '../../actions/index';
 import { viewFavoritesFetchCall } from '../../helpers'
 import { populateFavorites } from '../../actions/index';
-import { NavLink } from 'react-router-dom';
-
 
 class UserLogin extends Component {
   constructor() {
@@ -34,7 +32,7 @@ class UserLogin extends Component {
       this.storeUserLogin(data.data)
       this.props.loggedInUser(data);
     } catch (error) {
-      alert('fuckyou');
+      alert('Email and Password do not match');
     }
     await this.viewFavoritesPage();
   };

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-export const Card = ({ id, title, overview, rating, image, date, saveFavorite }) => {
+export const Card = ({ id, title, overview, rating, image, date, saveFavorite, evaluateClass }) => {
   return (
     <div className="card">
       <h2>{title}</h2>
@@ -10,7 +10,7 @@ export const Card = ({ id, title, overview, rating, image, date, saveFavorite })
       <h3>Rating: {rating}</h3>
       <p>{overview}</p>
       <p>{date}</p>
-      <button onClick={() => saveFavorite(id, title, image, date, rating, overview)}>FAVORITE</button>
+      <button className={evaluateClass()}onClick={() => saveFavorite(id, title, image, date, rating, overview)}>FAVORITE</button>
     </div>
   );
 };

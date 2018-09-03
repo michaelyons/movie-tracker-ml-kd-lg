@@ -15,7 +15,8 @@ class App extends Component {
       now_playing: [],
       popular: [],
       top_rated: [],
-      upcoming: []
+      upcoming: [],
+      currentDisplay: ''
     };
   }
 
@@ -25,10 +26,6 @@ class App extends Component {
   };
 
   setCurrentMovieCategoryGlobalState = async currentMovieData => {
-    this.setState({
-      clicked: false
-    })
-
     if (this.state[currentMovieData].length) {
       this.props.makeCards(this.state[currentMovieData])
       return
@@ -38,7 +35,9 @@ class App extends Component {
     this.props.makeCards(data);
 
     this.setState({ 
-      [currentMovieData]: data
+      [currentMovieData]: data,
+      clicked: false,
+      currentDisplay: [currentMovieData]
     })
   };
 
@@ -48,6 +47,11 @@ class App extends Component {
     })
     this.props.makeCards(this.props.favorite);
   };
+
+  logout = () => {
+    this.props.logOutUser({})
+    this.setCurrentMovieCategoryGlobalState("now_playing")
+  }
 
   render() {
     return (
@@ -64,12 +68,13 @@ class App extends Component {
                       View Favorites
                   </button>
                 </NavLink>
-                <button onClick={() => this.props.logOutUser({})}>Sign Out</button>
+                <NavLink to='/'>
+                  <button onClick={() => this.logout()}>Sign Out</button>
+                </NavLink>
               </div>
             </div>
           }
           <h1 className="App-title">Welcome to MovieTracker</h1>
-
 
           <NavLink to="/">
             <button
@@ -111,7 +116,10 @@ class App extends Component {
           <Route exact path = '/popular' component={CardsContainer} />
           <Route exact path = '/top_rated' component={CardsContainer} />
           <Route exact path = '/favorites' 
-            render={(props) => <CardsContainer {...props} clicked={this.state.clicked} setFavoriteState={this.setFavoriteState}/>} 
+            render={(props) => 
+              <CardsContainer {...props} 
+              clicked={this.state.clicked} 
+              setFavoriteState={this.setFavoriteState}/>} 
           />
         </main>
       </div>

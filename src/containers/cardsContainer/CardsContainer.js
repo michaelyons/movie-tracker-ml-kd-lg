@@ -60,13 +60,19 @@ class CardsContainer extends Component {
       this.props.addFavoriteMovie(userFavoritesData);
     }
             
-    if (this.props.clicked) this.props.setFavoriteState()
+    if (this.props.clicked) {
+      this.props.setFavoriteState()
+    } 
   };
+
+  evaluateClass = () => {
+    console.log('yay')
+  }
 
   render() {
     return (
       <div className="cards-container">
-        {this.props.data.map(card => (<Card {...card} key={card.id} saveFavorite={this.saveFavorite} />))}
+        {this.props.data.map(card => (<Card {...card} key={card.id} saveFavorite={this.saveFavorite} evaluateClass={this.evaluateClass}/>))}
       </div>
     );
   }

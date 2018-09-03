@@ -1,5 +1,4 @@
 export const addFavoriteMovieReducer = (state = [], action) => {
-  let tempData;
   switch (action.type) {
     case 'ADD_FAVORITE':
       state.push(action.favorite);

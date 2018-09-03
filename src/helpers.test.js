@@ -76,4 +76,29 @@ describe('helpers file', () => {
       );
     });
   });
+
+  describe('cleanMovies', () => {
+    it('should return a film object with proper keys and values', () => {
+      mockResponse = {
+        results: [
+          {
+            id: 402900,
+            original_title: "Ocean's Eight",
+            overview:
+              "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century at New York's annual Met Gala.",
+            popularity: 146.1,
+            poster_path: '/MvYpKlpFukTivnlBhizGbkAe3v.jpg',
+            release_date: '2018-06-07',
+            title: "Ocean's Eight",
+            video: false,
+            vote_average: 7,
+            vote_count: 1334
+          }
+        ]
+      };
+      const result = cleanMovies(mockResponse);
+      console.log(mockResponse);
+      expect(result.results).toEqual(402900);
+    });
+  });
 });

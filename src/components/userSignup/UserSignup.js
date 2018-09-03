@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { newUserFetchCall } from '../../helpers.js';
+import './UserSignup.css'
 
 class UserSignup extends Component {
   constructor() {
@@ -20,6 +21,7 @@ class UserSignup extends Component {
       email: '',
       password: ''
     });
+    this.props.handleSignup()
     return data;
   };
 
@@ -33,9 +35,10 @@ class UserSignup extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <h2>Sign Up</h2>
+        <form className='submit-form' onSubmit={this.handleSubmit}>
+          <h2 className='signup-title'>Sign Up</h2>
           <input
+            className='signup-input'
             placeholder="User Name"
             value={this.state.name}
             type="text"
@@ -43,6 +46,7 @@ class UserSignup extends Component {
             onChange={this.handleChange}
           />
           <input
+            className='signup-input'
             placeholder="Email"
             value={this.state.email}
             type="email"
@@ -50,13 +54,17 @@ class UserSignup extends Component {
             onChange={this.handleChange}
           />
           <input
+            className='signup-input'
             placeholder="Password"
             value={this.state.password}
             type="password"
             name="password"
             onChange={this.handleChange}
           />
-          <button>Sign Up</button>
+          <div>
+            <button className='user-submit-button'>Sign Up</button>
+            <button className='user-submit-button' onClick={() => this.props.handleSignup()}>Cancel</button>
+          </div>
         </form>
       </div>
     );

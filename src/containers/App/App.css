@@ -45,7 +45,8 @@
   margin-left: 1.75rem; }
 
 .clicked-route-button {
-  background-color: yellow; }
+  background-color: yellow;
+  outline: none; }
 
 .route-button {
   height: 2rem;

@@ -1,0 +1,21 @@
+.submit-form {
+  height: 8rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: .8rem;
+  justify-content: space-around;
+  align-items: center;
+}
+.signup-title {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.signup-input {
+  width: 14rem;
+  height: 1rem;
+}
+
+.user-submit-button {
+  width: 6rem;
+}

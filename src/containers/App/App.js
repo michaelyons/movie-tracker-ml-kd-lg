@@ -13,7 +13,11 @@ class App extends Component {
     super();
     this.state = {
       clicked: false,
-      loggedIn: false
+      loggedIn: false,
+      now_playing: [],
+      popular: [],
+      top_rated: [],
+      upcoming: []
     };
   }
 
@@ -23,8 +27,17 @@ class App extends Component {
   };
 
   setCurrentMovieCategoryGlobalState = async currentMovieData => {
+    if (this.state[currentMovieData].length) {
+      this.props.makeCards(this.state[currentMovieData])
+      return
+    }
+    
     const data = await currentMovieCategoryFetch(currentMovieData);
     this.props.makeCards(data);
+
+    this.setState({ 
+      [currentMovieData]: data
+    })
   };
 
   setFavoriteState = (data) => {
@@ -46,7 +59,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.id.data)
     return (
       <div className="App">
         <header className="App-header">

@@ -33,7 +33,7 @@ export const cleanRefreshedMovies = async data => {
       overview: result.overview,
       rating: result.vote_average,
       image: result.poster_path,
-      id: result.id,
+      id: result.movie_id,
       date: result.release_date
     };
   });

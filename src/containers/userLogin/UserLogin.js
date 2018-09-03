@@ -105,6 +105,7 @@ class UserLogin extends Component {
           >Login</button>
           {loggedInRedirect}
         </form>
+          <button>Register</button>
       </div>
     );
   }

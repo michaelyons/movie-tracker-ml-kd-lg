@@ -49,6 +49,7 @@ class CardsContainer extends Component {
     this.props.favorite.forEach(favorite => {
       if (title === favorite.title) {
         deleteFavorite(id, userId);
+        console.log(id, userId)
         this.props.deleteFavoriteMovie(userFavoritesData);
         counter++;
         return;

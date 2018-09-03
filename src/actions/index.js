@@ -1,6 +1,6 @@
 export const movieCard = movies => {
   return {
-    type: 'DISPLAY-MOVIE-INFO',
+    type: 'DISPLAY_MOVIE_INFO',
     movies
   };
 };
@@ -19,9 +19,9 @@ export const addFavorites = favorite => {
   };
 };
 
-export const populateFavorites = favorite => {
+export const resetFavorites = favorite => {
   return {
-    type: 'POPULATE_FAVORITE',
+    type: 'RESET_FAVORITE',
     favorite
   };
 };

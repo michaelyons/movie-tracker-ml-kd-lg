@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { movieCard, userLogin, populateFavorites } from '../../actions/index.js';
+import { movieCard, userLogin, resetFavorites } from '../../actions/index.js';
 import './App.css';
 import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
@@ -141,7 +141,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   makeCards: movieArray => dispatch(movieCard(movieArray)),
   logOutUser: user => dispatch(userLogin(user)),
-  clearFavorites: favorite => dispatch(populateFavorites(favorite)),
+  clearFavorites: favorite => dispatch(resetFavorites(favorite)),
 });
 
 export default connect(

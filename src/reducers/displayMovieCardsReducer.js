@@ -1,6 +1,6 @@
 export const displayMovieCardsReducer = (state = [], action) => {
   switch (action.type) {
-    case 'DISPLAY-MOVIE-INFO':
+    case 'DISPLAY_MOVIE_INFO':
       return action.movies;
     default:
       return state;

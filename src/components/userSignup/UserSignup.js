@@ -58,7 +58,6 @@ class UserSignup extends Component {
           />
           <button>Sign Up</button>
         </form>
-        <button>Cancel</button>
       </div>
     );
   }

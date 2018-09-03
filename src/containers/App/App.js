@@ -31,7 +31,7 @@ class App extends Component {
       this.props.makeCards(this.state[currentMovieData])
       return
     }
-    
+
     const data = await currentMovieCategoryFetch(currentMovieData);
     this.props.makeCards(data);
 
@@ -44,18 +44,10 @@ class App extends Component {
     this.props.makeCards(data);
   };
 
-  setDisplayedState = async value => {
-    this.setCurrentMovieCategoryGlobalState(value)
-  }
-
   clickedIt = () => {
     this.setState({
       loggedIn: true
     })
-  }
-
-  signOut = () => {
-    window.location.reload(true);
   }
 
   render() {
@@ -82,25 +74,25 @@ class App extends Component {
 
           <NavLink to="/">
             <button
-              onClick={() => this.setDisplayedState("now_playing")}>
+              onClick={() => this.setCurrentMovieCategoryGlobalState("now_playing")}>
                 Now Playing
             </button>
           </NavLink>
           <NavLink to="/popular">
             <button 
-              onClick={() => this.setDisplayedState("popular")}>
+              onClick={() => this.setCurrentMovieCategoryGlobalState("popular")}>
                 Popular
             </button>
           </NavLink>
           <NavLink to="/top_rated">
             <button 
-              onClick={() => this.setDisplayedState("top_rated")}>
+              onClick={() => this.setCurrentMovieCategoryGlobalState("top_rated")}>
                 Top Rated
             </button>
           </NavLink>
           <NavLink to="/upcoming">
             <button 
-              onClick={() => this.setDisplayedState("upcoming")}>
+              onClick={() => this.setCurrentMovieCategoryGlobalState("upcoming")}>
                 Upcoming
             </button>
           </NavLink>        
@@ -113,20 +105,15 @@ class App extends Component {
               }}
             />
           </div>
+          {/* <Route
+              exact path="/signup"
+              render={() => {
+                return <UserSignup />;
+              }}
+            /> */}
 
         </header>
         <main>
-          {/* <aside>
-            <NavLink to="/login" className="login-nav" >
-            <button onClick={() => this.clickedIt()}>Log In</button>
-            </NavLink>
-             -- or -- 
-            <Link to="/signup" className="signup-nav">Sign Up</Link>
-             -- or -- 
-            <button onClick={() => this.signOut()}>Sign Out</button>
-          </aside> */}
-          <Route exact path='/login' component={UserLogin} />
-          <Route exact path='/signup' component={UserSignup} />
           <Route exact path='/' component={CardsContainer} />
           <Route exact path = '/upcoming' component={CardsContainer} />
           <Route exact path = '/popular' component={CardsContainer} />

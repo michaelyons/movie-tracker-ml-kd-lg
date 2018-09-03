@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { movieCard, userLogin } from '../../actions/index.js';
+import { movieCard, userLogin, populateFavorites } from '../../actions/index.js';
 import './App.css';
 import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
@@ -50,6 +50,7 @@ class App extends Component {
 
   logout = () => {
     this.props.logOutUser({})
+    this.props.clearFavorites([])
     this.setCurrentMovieCategoryGlobalState("now_playing")
   }
 
@@ -135,7 +136,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   makeCards: movieArray => dispatch(movieCard(movieArray)),
-  logOutUser: user => dispatch(userLogin(user))
+  logOutUser: user => dispatch(userLogin(user)),
+  clearFavorites: favorite => dispatch(populateFavorites(favorite)),
 });
 
 export default connect(

@@ -50,7 +50,6 @@ class UserLogin extends Component {
     ;
   };
 
-
   handleInput = event => {
     const { name, value } = event.target;
     this.setState({
@@ -115,8 +114,7 @@ class UserLogin extends Component {
               onClick={this.handleSignup}>Register</button>
           </div>
         </form>}
-        {this.state.signup && <UserSignup />}
-        {this.state.signup && <button onClick={this.handleSignup}>Cancel</button>}
+        {this.state.signup && <UserSignup loginUser={this.loginUser} handleSignup={this.handleSignup}/>}
       </div>
     );
   }

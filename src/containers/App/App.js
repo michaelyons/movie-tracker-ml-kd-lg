@@ -70,6 +70,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+        <div className='welcome-header'>
           {!this.props.id.data && <div></div>}
           {this.props.id.data && 
             <div>
@@ -88,7 +89,10 @@ class App extends Component {
               </div>
             </div>
           }
+        </div>
+        <div className='title-header'>
           <h1 className="App-title">Welcome to MovieTracker</h1>
+
 
           <NavLink to="/">
             <button
@@ -120,12 +124,13 @@ class App extends Component {
           </NavLink>        
 
           <div>
+
             <Route
               path="/"
               render={() => {
                 return <UserLogin />;
               }}
-            />
+              />
           </div>
         </header>
         <main>

@@ -14,11 +14,29 @@
   color: white;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+
+.welcome-header {
+  display: flex;
+  flex-direction: column;
+  width: 33.3%;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.title-header {
+  display: flex;
+  flex-direction: column;
+  width: 33.3%
+}
+
+.login-header {
+  width: 33.3%;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 3em;
 }
 
 .App-intro {
@@ -40,4 +58,5 @@
 
 .user-buttons {
   display: flex;
+  margin-left: 2.5rem;
 }

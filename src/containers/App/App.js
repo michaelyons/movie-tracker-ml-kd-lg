@@ -60,6 +60,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+        <div className='welcome-header'>
           {!this.props.id.data && <div></div>}
           {this.props.id.data && 
             <div>
@@ -77,40 +78,43 @@ class App extends Component {
               </div>
             </div>
           }
+        </div>
+        <div className='title-header'>
           <h1 className="App-title">Welcome to MovieTracker</h1>
-
-          <NavLink to="/">
-            <button
-              onClick={() => this.setCurrentMovieCategoryGlobalState("now_playing")}>
-                Now Playing
-            </button>
-          </NavLink>
-          <NavLink to="/popular">
-            <button 
-              onClick={() => this.setCurrentMovieCategoryGlobalState("popular")}>
-                Popular
-            </button>
-          </NavLink>
-          <NavLink to="/top_rated">
-            <button 
-              onClick={() => this.setCurrentMovieCategoryGlobalState("top_rated")}>
-                Top Rated
-            </button>
-          </NavLink>
-          <NavLink to="/upcoming">
-            <button 
-              onClick={() => this.setCurrentMovieCategoryGlobalState("upcoming")}>
-                Upcoming
-            </button>
-          </NavLink>        
-
-          <div>
+          <div className='nav-buttons'>
+            <NavLink to="/">
+              <button
+                onClick={() => this.setCurrentMovieCategoryGlobalState("now_playing")}>
+                  Now Playing
+              </button>
+            </NavLink>
+            <NavLink to="/popular">
+              <button 
+                onClick={() => this.setCurrentMovieCategoryGlobalState("popular")}>
+                  Popular
+              </button>
+            </NavLink>
+            <NavLink to="/top_rated">
+              <button 
+                onClick={() => this.setCurrentMovieCategoryGlobalState("top_rated")}>
+                  Top Rated
+              </button>
+            </NavLink>
+            <NavLink to="/upcoming">
+              <button 
+                onClick={() => this.setCurrentMovieCategoryGlobalState("upcoming")}>
+                  Upcoming
+              </button>
+            </NavLink> 
+          </div>       
+          </div>
+          <div className='login-header'>
             <Route
               path="/"
               render={() => {
                 return <UserLogin />;
               }}
-            />
+              />
           </div>
         </header>
         <main>

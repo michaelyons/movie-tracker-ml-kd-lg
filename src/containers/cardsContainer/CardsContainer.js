@@ -66,6 +66,7 @@ class CardsContainer extends Component {
   };
 
   evaluateClass =  (title) => {
+    console.log('yay')
     let futureClass = 'button'
     const favorites = this.props.favorite.map(favorite => favorite.title)
 

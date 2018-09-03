@@ -11,6 +11,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      test: false,
       clicked: false,
       now_playing: [],
       popular: [],
@@ -61,8 +62,7 @@ class App extends Component {
 
     if (this.state.currentDisplay[0] === type) futureClass += ' clicked-route-button'
     if (this.state.currentDisplay === type) futureClass += ' clicked-route-button'
-
-
+    
     return futureClass
   }
 

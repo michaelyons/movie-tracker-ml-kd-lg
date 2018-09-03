@@ -26,6 +26,8 @@ class App extends Component {
   };
 
   setCurrentMovieCategoryGlobalState = async currentMovieData => {
+    this.setState({ currentDisplay: [currentMovieData] })
+
     if (this.state[currentMovieData].length) {
       this.props.makeCards(this.state[currentMovieData])
       return
@@ -37,12 +39,14 @@ class App extends Component {
     this.setState({ 
       [currentMovieData]: data,
       clicked: false,
-      currentDisplay: [currentMovieData]
     })
   };
 
   setFavoriteState = () => {
-    this.setState ({ clicked: true })
+    this.setState ({ 
+      clicked: true,
+      currentDisplay: 'favorites'
+    })
     this.props.makeCards(this.props.favorite);
   };
 
@@ -51,10 +55,16 @@ class App extends Component {
     this.props.clearFavorites([])
     this.setCurrentMovieCategoryGlobalState("now_playing")
   }
-  
-  // rerender = () => {
-  //   this.setCurrentMovieCategoryGlobalState(this.state.currentDisplay)
-  // }
+
+  evaluateRouteClass = (type) => {
+    let futureClass = 'route-button'
+
+    if (this.state.currentDisplay[0] === type) futureClass += ' clicked-route-button'
+    if (this.state.currentDisplay === type) futureClass += ' clicked-route-button'
+
+
+    return futureClass
+  }
 
   render() {
     return (
@@ -67,6 +77,7 @@ class App extends Component {
               <div className='user-buttons'>
                 <NavLink to="/favorites">
                   <button 
+                    className={this.evaluateRouteClass('favorites')}
                     onClick={() => this.setFavoriteState()}>
                       View Favorites
                   </button>
@@ -81,24 +92,28 @@ class App extends Component {
 
           <NavLink to="/">
             <button
+              className={this.evaluateRouteClass('now_playing')}
               onClick={() => this.setCurrentMovieCategoryGlobalState("now_playing")}>
                 Now Playing
             </button>
           </NavLink>
           <NavLink to="/popular">
             <button 
+              className={this.evaluateRouteClass('popular')}
               onClick={() => this.setCurrentMovieCategoryGlobalState("popular")}>
                 Popular
             </button>
           </NavLink>
           <NavLink to="/top_rated">
             <button 
+              className={this.evaluateRouteClass('top_rated')}
               onClick={() => this.setCurrentMovieCategoryGlobalState("top_rated")}>
                 Top Rated
             </button>
           </NavLink>
           <NavLink to="/upcoming">
             <button 
+              className={this.evaluateRouteClass('upcoming')}
               onClick={() => this.setCurrentMovieCategoryGlobalState("upcoming")}>
                 Upcoming
             </button>

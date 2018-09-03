@@ -1,14 +1,10 @@
 .App {
   text-align: center; }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px; }
-
 .App-header {
   background-color: #222;
   height: 150px;
-  padding: 20px;
+  padding: 40px;
   color: white;
   display: flex;
   width: 100%;
@@ -17,9 +13,9 @@
 .welcome-header {
   display: flex;
   flex-direction: column;
-  width: 33.3%;
+  width: 27%;
   align-items: center;
-  margin-top: 1rem; }
+  margin-top: 1.2rem; }
 
 .title-header {
   display: flex;
@@ -30,7 +26,10 @@
   width: 33.3%; }
 
 .App-title {
-  font-size: 3em; }
+  font-size: 2.25em; }
+
+.title-buttons {
+  margin-top: 1.5rem; }
 
 .App-intro {
   font-size: large; }
@@ -38,21 +37,23 @@
 .header-name {
   color: white; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
-
 .user-name {
   color: white; }
 
 .user-buttons {
-
   display: flex;
-  margin-left: 2.5rem; }
-
+  margin-left: 1.75rem; }
 
 .clicked-route-button {
   background-color: yellow; }
 
+.route-button {
+  height: 2rem;
+  width: 6rem; }
+
+.user-fave-button {
+  height: 1.5rem;
+  width: 6rem; }
+
+button:hover {
+  cursor: pointer; }

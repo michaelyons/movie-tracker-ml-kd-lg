@@ -5,6 +5,7 @@ import { viewFavoritesFetchCall } from '../../helpers'
 import { Redirect } from 'react-router-dom';
 import { addFavorites } from '../../actions/index';
 import UserSignup from '../../components/userSignup/UserSignup'
+import './UserLogin.css'
 
 
 class UserLogin extends Component {
@@ -85,10 +86,11 @@ class UserLogin extends Component {
   
   render() {
     return (
-      <div>
-        {!this.state.signup && <form onSubmit={this.loginUser}>
-          <h2>Log In</h2>
+      <div className='login-container'>
+        {!this.state.signup && <form className='login-form' onSubmit={this.loginUser}>
+          <h2 className='login-title'>Log In</h2>
           <input
+            className='login-input'
             type="email"
             placeholder="Enter Email"
             value={this.state.email}
@@ -96,18 +98,23 @@ class UserLogin extends Component {
             onChange={this.handleInput}
           />
           <input
+            className='login-input'
             type="password"
             placeholder="Enter Password"
             value={this.state.password}
             name="password"
             onChange={this.handleInput}
           />
-
-          <button 
-            disabled={!this.validateUserInputForm()}
-          >Login</button>
+          <div>
+            <button 
+              className='user-login-button'
+              disabled={!this.validateUserInputForm()}
+            >Login</button>
+            <button 
+              className='user-login-button'
+              onClick={this.handleSignup}>Register</button>
+          </div>
         </form>}
-        {!this.state.signup && <button onClick={this.handleSignup}>Register</button>}
         {this.state.signup && <UserSignup />}
         {this.state.signup && <button onClick={this.handleSignup}>Cancel</button>}
       </div>

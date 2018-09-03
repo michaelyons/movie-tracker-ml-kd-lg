@@ -111,7 +111,6 @@ class UserLogin extends Component {
         {!this.state.signup && <button onClick={this.handleSignup}>Register</button>}
         {this.state.signup && <UserSignup />}
         {this.state.signup && <button onClick={this.handleSignup}>Cancel</button>}
-
       </div>
     );
   }

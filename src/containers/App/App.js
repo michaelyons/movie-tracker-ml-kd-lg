@@ -6,14 +6,12 @@ import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
 import { Link, NavLink, Route, Switch } from 'react-router-dom';
 import UserLogin from '../userLogin/UserLogin';
-import UserSignup from '../../components/userSignup/UserSignup';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       clicked: false,
-      loggedIn: false,
       now_playing: [],
       popular: [],
       top_rated: [],
@@ -27,6 +25,10 @@ class App extends Component {
   };
 
   setCurrentMovieCategoryGlobalState = async currentMovieData => {
+    this.setState({
+      clicked: false
+    })
+
     if (this.state[currentMovieData].length) {
       this.props.makeCards(this.state[currentMovieData])
       return
@@ -40,15 +42,12 @@ class App extends Component {
     })
   };
 
-  setFavoriteState = (data) => {
-    this.props.makeCards(data);
-  };
-
-  clickedIt = () => {
-    this.setState({
-      loggedIn: true
+  setFavoriteState = () => {
+    this.setState ({
+      clicked: true
     })
-  }
+    this.props.makeCards(this.props.favorite);
+  };
 
   render() {
     return (
@@ -61,7 +60,7 @@ class App extends Component {
               <div className='user-buttons'>
                 <NavLink to="/favorites">
                   <button 
-                    onClick={() => this.setFavoriteState(this.props.favorite)}>
+                    onClick={() => this.setFavoriteState()}>
                       View Favorites
                   </button>
                 </NavLink>
@@ -105,20 +104,15 @@ class App extends Component {
               }}
             />
           </div>
-          {/* <Route
-              exact path="/signup"
-              render={() => {
-                return <UserSignup />;
-              }}
-            /> */}
-
         </header>
         <main>
           <Route exact path='/' component={CardsContainer} />
           <Route exact path = '/upcoming' component={CardsContainer} />
           <Route exact path = '/popular' component={CardsContainer} />
           <Route exact path = '/top_rated' component={CardsContainer} />
-          <Route exact path = '/favorites' component={CardsContainer} />
+          <Route exact path = '/favorites' 
+            render={(props) => <CardsContainer {...props} clicked={this.state.clicked} setFavoriteState={this.setFavoriteState}/>} 
+          />
         </main>
       </div>
     );

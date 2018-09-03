@@ -5,7 +5,7 @@ export const addFavoriteMovieReducer = (state = [], action) => {
       tempData = state || [];
       tempData.push(action.favorite);
       return tempData;
-    case 'POPULATE_FAVORITE':
+    case 'RESET_FAVORITE':
       return action.favorite.data || [];
     case 'DELETE_FAVORITE':
       tempData = state || [];

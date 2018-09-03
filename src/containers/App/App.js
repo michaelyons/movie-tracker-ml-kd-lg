@@ -42,9 +42,7 @@ class App extends Component {
   };
 
   setFavoriteState = () => {
-    this.setState ({
-      clicked: true
-    })
+    this.setState ({ clicked: true })
     this.props.makeCards(this.props.favorite);
   };
 
@@ -53,6 +51,10 @@ class App extends Component {
     this.props.clearFavorites([])
     this.setCurrentMovieCategoryGlobalState("now_playing")
   }
+  
+  // rerender = () => {
+  //   this.setCurrentMovieCategoryGlobalState(this.state.currentDisplay)
+  // }
 
   render() {
     return (
@@ -120,7 +122,9 @@ class App extends Component {
             render={(props) => 
               <CardsContainer {...props} 
               clicked={this.state.clicked} 
-              setFavoriteState={this.setFavoriteState}/>} 
+              setFavoriteState={this.setFavoriteState}
+              // rerender={this.state.rerender}
+              />} 
           />
         </main>
       </div>

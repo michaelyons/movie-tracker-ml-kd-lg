@@ -1,4 +1,4 @@
-import { key } from './helpers/key';
+import { key } from './key';
 
 export const currentMovieCategoryFetch = async currentMovieData => {
   const url = `https://api.themoviedb.org/3/movie/${currentMovieData}?api_key=${key}&language=en-US&page=1/`;
@@ -92,7 +92,7 @@ export const addFavorite = async (
     if (response.ok) {
       return await response.json();
     } else {
-      throw new Error('FUUUUUUUCK');
+      throw new Error('Error');
     }
   } catch (error) {
     alert(error.message);
@@ -121,10 +121,3 @@ export const deleteFavorite = async (movie_id, user_id) => {
     alert(error.message);
   }
 };
-
-// export const setMovieData = (currentMovieData) => {
-//   let currentMovieType;
-//   switch(currentMovieData) {
-//     case: ''
-//   }
-// }

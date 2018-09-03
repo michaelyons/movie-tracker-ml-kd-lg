@@ -27,10 +27,8 @@ class App extends Component {
     this.props.makeCards(data);
   };
 
-  setFavoriteState = () => {
-    this.setState({
-      clicked: true
-    });
+  setFavoriteState = (data) => {
+    this.props.makeCards(data);
   };
 
   setDisplayedState = async value => {
@@ -57,21 +55,19 @@ class App extends Component {
             <div>
               <h1 className='user-name'>Welcome {this.props.id.data.name}</h1>
               <div className='user-buttons'>
-                <button onClick={() => this.setFavoritesState()}>
-                  View Favorites
-                </button>
+                <NavLink to="/favorites">
+                  <button 
+                    onClick={() => this.setFavoriteState(this.props.favorite)}>
+                      View Favorites
+                  </button>
+                </NavLink>
                 <button onClick={() => this.props.logOutUser({})}>Sign Out</button>
               </div>
             </div>
           }
           <h1 className="App-title">Welcome to MovieTracker</h1>
 
-          <NavLink to="/favorites">
-            <button 
-              onClick={() => this.setFavoriteState()}>
-                View Favorites
-            </button>
-          </NavLink>
+
           <NavLink to="/">
             <button
               onClick={() => this.setDisplayedState("now_playing")}>
@@ -108,7 +104,7 @@ class App extends Component {
 
         </header>
         <main>
-          <aside>
+          {/* <aside>
             <NavLink to="/login" className="login-nav" >
             <button onClick={() => this.clickedIt()}>Log In</button>
             </NavLink>
@@ -116,16 +112,14 @@ class App extends Component {
             <Link to="/signup" className="signup-nav">Sign Up</Link>
              -- or -- 
             <button onClick={() => this.signOut()}>Sign Out</button>
-          </aside>
+          </aside> */}
           <Route exact path='/login' component={UserLogin} />
           <Route exact path='/signup' component={UserSignup} />
           <Route exact path='/' component={CardsContainer} />
           <Route exact path = '/upcoming' component={CardsContainer} />
           <Route exact path = '/popular' component={CardsContainer} />
           <Route exact path = '/top_rated' component={CardsContainer} />
-          <Route exact path = '/favorites' render={() => {
-            return <CardsContainer clicked={this.state.clicked} />
-          }} />
+          <Route exact path = '/favorites' component={CardsContainer} />
         </main>
       </div>
     );
@@ -134,7 +128,8 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   loggedInUser: state,
-  id: state.loginUserReducer
+  id: state.loginUserReducer,
+  favorite: state.addFavoriteMovieReducer
 });
 
 const mapDispatchToProps = dispatch => ({

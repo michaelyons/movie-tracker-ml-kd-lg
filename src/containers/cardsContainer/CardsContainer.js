@@ -64,14 +64,7 @@ class CardsContainer extends Component {
   render() {
     return (
       <div className="cards-container">
-        {!this.props.clicked &&
-          this.props.data.map(card => (
-            <Card {...card} key={card.id} saveFavorite={this.saveFavorite} />
-          ))}
-        {this.props.clicked &&
-          this.props.favorite.map(card => (
-            <Card {...card} key={card.id} saveFavorite={this.saveFavorite} />
-          ))}
+        {this.props.data.map(card => (<Card {...card} key={card.id} saveFavorite={this.saveFavorite} />))}
       </div>
     );
   }

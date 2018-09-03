@@ -82,7 +82,11 @@ describe('helpers file', () => {
       mockResponse = {
         results: [
           {
+            adult: false,
+            backdrop_path: '/scQf03Fm3jeyv4FH04qvi4fp4wh.jpg',
+            genre_ids: undefined,
             id: 402900,
+            original_language: 'en',
             original_title: "Ocean's Eight",
             overview:
               "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century at New York's annual Met Gala.",
@@ -96,9 +100,11 @@ describe('helpers file', () => {
           }
         ]
       };
-      const result = cleanMovies(mockResponse);
-      console.log(mockResponse);
-      expect(result.results).toEqual(402900);
+      cleanMovies(mockResponse).then(res => {
+        expect(res[0].id).toEqual(402900);
+      });
     });
   });
+
+  describe('viewFavoritesFetchCall', () => {});
 });

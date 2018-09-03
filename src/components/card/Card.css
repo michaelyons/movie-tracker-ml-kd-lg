@@ -1,2 +1,5 @@
 .card {
   width: 33%; }
+
+.fave-clicked {
+  background-color: yellow; }

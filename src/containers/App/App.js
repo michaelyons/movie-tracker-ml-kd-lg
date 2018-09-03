@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { movieCard, userLogin } from '../../actions/index.js';
+import { movieCard, userLogin, populateFavorites } from '../../actions/index.js';
 import './App.css';
 import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
@@ -42,16 +42,19 @@ class App extends Component {
   };
 
   setFavoriteState = () => {
-    this.setState ({
-      clicked: true
-    })
+    this.setState ({ clicked: true })
     this.props.makeCards(this.props.favorite);
   };
 
   logout = () => {
     this.props.logOutUser({})
+    this.props.clearFavorites([])
     this.setCurrentMovieCategoryGlobalState("now_playing")
   }
+  
+  // rerender = () => {
+  //   this.setCurrentMovieCategoryGlobalState(this.state.currentDisplay)
+  // }
 
   render() {
     return (
@@ -119,7 +122,9 @@ class App extends Component {
             render={(props) => 
               <CardsContainer {...props} 
               clicked={this.state.clicked} 
-              setFavoriteState={this.setFavoriteState}/>} 
+              setFavoriteState={this.setFavoriteState}
+              // rerender={this.state.rerender}
+              />} 
           />
         </main>
       </div>
@@ -135,7 +140,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   makeCards: movieArray => dispatch(movieCard(movieArray)),
-  logOutUser: user => dispatch(userLogin(user))
+  logOutUser: user => dispatch(userLogin(user)),
+  clearFavorites: favorite => dispatch(populateFavorites(favorite)),
 });
 
 export default connect(

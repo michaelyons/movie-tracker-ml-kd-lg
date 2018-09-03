@@ -62,11 +62,17 @@ class CardsContainer extends Component {
             
     if (this.props.clicked) {
       this.props.setFavoriteState()
-    } 
+    }
   };
 
-  evaluateClass = () => {
+  evaluateClass =  (title) => {
     console.log('yay')
+    let futureClass = 'button'
+    const favorites = this.props.favorite.map(favorite => favorite.title)
+
+    if (favorites.includes(title)) futureClass += ' fave-clicked'
+
+    return futureClass
   }
 
   render() {
@@ -78,10 +84,10 @@ class CardsContainer extends Component {
   }
 }
 
-const mapStateToProps = card => ({
-  data: card.displayMovieCardsReducer,
-  id: card.loginUserReducer,
-  favorite: card.addFavoriteMovieReducer
+const mapStateToProps = state => ({
+  data: state.displayMovieCardsReducer,
+  id: state.loginUserReducer,
+  favorite: state.addFavoriteMovieReducer
 });
 
 const mapDispatchToProps = dispatch => ({

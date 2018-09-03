@@ -10,7 +10,11 @@ export const Card = ({ id, title, overview, rating, image, date, saveFavorite, e
       <h3>Rating: {rating}</h3>
       <p>{overview}</p>
       <p>{date}</p>
-      <button className={evaluateClass(title)} onClick={() => saveFavorite(id, title, image, date, rating, overview)}>FAVORITE</button>
+      <button 
+        className={evaluateClass(title)} 
+        onClick={() => {
+          saveFavorite(id, title, image, date, rating, overview)
+        }}>FAVORITE</button>
     </div>
   );
 };

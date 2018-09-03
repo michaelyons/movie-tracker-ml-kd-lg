@@ -34,3 +34,6 @@
 
 .user-buttons {
   display: flex; }
+
+.clicked-route-button {
+  background-color: yellow; }

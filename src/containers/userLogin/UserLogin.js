@@ -34,7 +34,6 @@ class UserLogin extends Component {
         password: ''
       });
       const data = await response.json();
-      console.log(data)
       this.storeUserLogin(data.data)
       this.props.loggedInUser(data);
       await this.viewFavoritesPage(data.data.id);

@@ -1,4 +1,4 @@
-import { displayMovieCardsReducer } from './displayMovieCardsReducer'
+import { displayMovieCardsReducer } from '../displayMovieCardsReducer'
 
 describe('displayMovieCardsReducer', () => {
   it('should return the initial state', () => {

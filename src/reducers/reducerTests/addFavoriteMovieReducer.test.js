@@ -1,4 +1,4 @@
-import { addFavoriteMovieReducer } from './addFavoriteMovieReducer'
+import { addFavoriteMovieReducer } from '../addFavoriteMovieReducer'
 
 describe('addFavoriteMovieReducer', () => {
   it('should return the initial state', () => {

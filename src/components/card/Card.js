@@ -16,10 +16,11 @@ export const Card = ({ id, title, overview, rating, image, date, saveFavorite, e
 };
 
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  overview: PropTypes.string,
+  rating: PropTypes.number,
   image: PropTypes.string,
   date: PropTypes.string,
-  saveFavorite: PropTypes.func
+  saveFavorite: PropTypes.func,
+  evaluateClass: PropTypes.func
 };

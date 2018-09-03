@@ -4,6 +4,7 @@ import { userLogin } from '../../actions/index';
 import { viewFavoritesFetchCall } from '../../helpers'
 import { Redirect } from 'react-router-dom';
 import { addFavorites } from '../../actions/index';
+import UserSignup from '../../components/userSignup/UserSignup'
 
 
 class UserLogin extends Component {
@@ -12,7 +13,8 @@ class UserLogin extends Component {
     this.state = {
       email: '',
       password: '',
-      loggedIn: false
+      loggedIn: false,
+      signup: false
     };
   }
 
@@ -75,15 +77,17 @@ class UserLogin extends Component {
     })
   }
 
+  handleSignup = () => {
+    const updateSignup = !this.state.signup
+    this.setState ({
+      signup: updateSignup
+    })
+  }
   
   render() {
-    const loggedInRedirect = this.state.loggedIn === true ?
-      <Redirect to='/' /> : 
-        <div></div>;
-    
     return (
       <div>
-        <form onSubmit={this.loginUser}>
+        {!this.state.signup && <form onSubmit={this.loginUser}>
           <h2>Log In</h2>
           <input
             type="email"
@@ -103,9 +107,10 @@ class UserLogin extends Component {
           <button 
             disabled={!this.validateUserInputForm()}
           >Login</button>
-          {loggedInRedirect}
-        </form>
-          <button>Register</button>
+        </form>}
+        {!this.state.signup && <button onClick={this.handleSignup}>Register</button>}
+        {this.state.signup && <UserSignup />}
+        {this.state.signup && <button onClick={this.handleSignup}>Cancel</button>}
       </div>
     );
   }

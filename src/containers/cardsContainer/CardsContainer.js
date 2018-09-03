@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Card } from '../../components/card/Card.js';
 import './CardsContainer.css';
 import { addFavorite, deleteFavorite } from '../../helpers.js';
-import { addFavorites, deleteFavorites } from '../../actions/index';
+import { addFavorites, deleteFavorites, movieCard } from '../../actions/index';
 
 class CardsContainer extends Component {
   saveFavorite = (id, title, image, date, rating, overview) => {
@@ -34,7 +34,7 @@ class CardsContainer extends Component {
     );
   };
 
-  filterFavorites = (
+  filterFavorites = async (
     id,
     userId,
     title,
@@ -46,12 +46,11 @@ class CardsContainer extends Component {
   ) => {
     let counter = 0;
 
-    this.props.favorite.forEach(favorite => {
+    await this.props.favorite.forEach(favorite => {
       if (title === favorite.title) {
-        deleteFavorite(id, userId);
-        console.log(id, userId)
-        this.props.deleteFavoriteMovie(userFavoritesData);
         counter++;
+        deleteFavorite(id, userId);
+        this.props.deleteFavoriteMovie(userFavoritesData);
         return;
       }
     });
@@ -60,6 +59,8 @@ class CardsContainer extends Component {
       addFavorite(id, userId, title, image, date, rating, overview);
       this.props.addFavoriteMovie(userFavoritesData);
     }
+            
+    if (this.props.clicked) this.props.setFavoriteState()
   };
 
   render() {
@@ -78,6 +79,7 @@ const mapStateToProps = card => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  makeCards: movieArray => dispatch(movieCard(movieArray)),
   addFavoriteMovie: favorite => dispatch(addFavorites(favorite)),
   deleteFavoriteMovie: deleted => dispatch(deleteFavorites(deleted))
 });

@@ -34,5 +34,11 @@ describe('UserLogin', () => {
     expect(mockHandleLogin).toHaveBeenCalled()
   })
 
+  it('should set the state with the names and values', () => {
+    const mockData = {target: { name: 'name', value: 'Lee' }}
+    wrapper.instance().handleChange(mockData)
+    expect(wrapper.state('name')).toEqual('Lee')
+  }) 
+
 
 })

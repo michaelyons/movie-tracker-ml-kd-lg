@@ -11,7 +11,7 @@ import {
 describe('helpers file', () => {
   let mockResponse;
   let mockMovie;
-  describe('filmFetchCall', () => {
+  describe('currentMovieCategoryFetch', () => {
     beforeEach(() => {
       mockResponse = {
         results: [
@@ -105,6 +105,98 @@ describe('helpers file', () => {
       });
     });
   });
+  describe('newUserFetchCall', () => {
+    it('should fetch data with the correct params', () => {
+      const mockResults = {
+        status: 'success',
+        message: 'New user created',
+        id: 20
+      };
+      const randUser = {
+        password: 'password',
+        name: 'Taylor',
+        email: 'tman2272@aol.com'
+      };
+      window.fetch = jest.fn().mockImplementation(() => {
+        Promise.resolve({
+          json: () => Promise.resolve(mockResults)
+        });
+      });
+      const expectedResult = [
+        'http://localhost:3000/api/users/new',
+        {
+          body:
+            '{"name":"Taylor","password":"tman2272@aol.com","email":"password"}',
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST'
+        }
+      ];
+      newUserFetchCall(randUser.name, randUser.password, randUser.email);
+      expect(window.fetch).toHaveBeenCalledWith(...expectedResult);
+    });
+  });
 
-  describe('viewFavoritesFetchCall', () => {});
+  describe('addFavorite Fetch Call', () => {
+    it('should add a favorite with correct data', () => {
+      const response = {
+        status: 'success',
+        message: 'Movie was added to favorites',
+        id: 116
+      };
+      const expectedFetchResult = [
+        'http://localhost:3000/api/users/favorites/new',
+        {
+          body:
+            '{"movie_id":{"status":"success","message":"Movie was added to favorites","id":116},"user_id":{"password":"password","name":"Taylor","email":"tman2272@aol.com"}}',
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST'
+        }
+      ];
+      window.fetch = jest.fn().mockImplementation(() => {
+        Promise.resolve({
+          json: () => Promise.resolve(response)
+        });
+      });
+      const randUser = {
+        password: 'password',
+        name: 'Taylor',
+        email: 'tman2272@aol.com'
+      };
+
+      addFavorite(response, randUser);
+      expect(window.fetch).toHaveBeenCalledWith(...expectedFetchResult);
+    });
+  });
+
+  describe('deleteFavorite', () => {
+    it('should fetch with the correct params', () => {
+      const response = { status: 'success', message: '1 row was deleted.' };
+      mockMovie = [
+        {
+          title: "Ocean's Eight",
+          overview:
+            "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century at New York's annual Met Gala.",
+          rating: 7,
+          image: `https://image.tmdb.org/t/p/w200/MvYpKlpFukTivnlBhizGbkAe3v.jpg`,
+          id: 402900,
+          date: '2018-06-07'
+        }
+      ];
+      window.fetch = jest.fn().mockImplementation(() =>
+        Promise.resolve({
+          json: () => Promise.resolve(response)
+        })
+      );
+      const expectedResult = [
+        'http://localhost:3000/api/users/1/favorites/402900',
+        {
+          body: '{"movie_id":402900,"user_id":1}',
+          headers: { 'Content-Type': 'application/json' },
+          method: 'DELETE'
+        }
+      ];
+      deleteFavorite(402900, 1);
+      expect(window.fetch).toHaveBeenCalledWith(...expectedResult);
+    });
+  });
 });

@@ -18,7 +18,7 @@ describe('UserLogin', () => {
   it('should reset the input fields after user submits info', async () => {
     wrapper.setState ({email: 'drlag2be@gmail.com', password: 'password'})
     const mockEvent = new Event('event') 
-    await wrapper.instance().handleSubmit(mockEvent)
+    await wrapper.instance().loginUser(mockEvent)
     expect(wrapper.state('email')).toEqual('')
     expect(wrapper.state('password')).toEqual('')
   })
@@ -36,7 +36,7 @@ describe('UserLogin', () => {
 
   it('should set the state with the names and values', () => {
     const mockData = {target: { name: 'name', value: 'Lee' }}
-    wrapper.instance().handleChange(mockData)
+    wrapper.instance().handleInput(mockData)
     expect(wrapper.state('name')).toEqual('Lee')
   }) 
 
@@ -46,6 +46,12 @@ describe('UserLogin', () => {
     wrapper.setState({email: 'drlag2be@gmail.com', password: 'password'})
     result = wrapper.instance().validateUserInputForm()
     expect(result).toEqual(true)
+  })
+
+  it('should display favorites when viewFavoritesPage is clicked', async () => {
+    const mockEvent = new Event('event') 
+    await wrapper.instance().viewFavoritesPage(mockEvent)
+    expect(mockHandleLogin).toHaveBeenCalled()
   })
 
 })

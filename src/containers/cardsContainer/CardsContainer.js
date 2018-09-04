@@ -90,13 +90,13 @@ class CardsContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   data: state.displayMovieCardsReducer,
   id: state.loginUserReducer,
   favorite: state.addFavoriteMovieReducer
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   makeCards: movieArray => dispatch(movieCard(movieArray)),
   addFavoriteMovie: favorite => dispatch(addFavorites(favorite)),
   deleteFavoriteMovie: deleted => dispatch(deleteFavorites(deleted))

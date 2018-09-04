@@ -30,7 +30,7 @@ describe('UserSignup', () => {
   });
 
   it('should call handleSignup when the form is submitted', () => {
-    wrapper.find('#user-login-button').simulate('click');
+    wrapper.find('#user-submit-button').simulate('click');
 
     expect(mockHandleSignup).toHaveBeenCalled();
   });

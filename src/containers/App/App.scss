@@ -8,7 +8,9 @@
   padding: 40px;
   color: white;
   display: flex;
-  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  width: 93.5vw;
   justify-content: space-around;
 }
 
@@ -17,7 +19,7 @@
   flex-direction: column;
   width: 27%;
   align-items: center;
-  margin-top: 1.2rem;
+  justify-content: space-around;
 }
 
 .App-header button {
@@ -27,11 +29,11 @@
 .title-header {
   display: flex;
   flex-direction: column;
-  width: 33.3%
+  width: 30.3%
 }
 
 .login-header {
-  width: 33.3%;
+  width: 30.3%;
 }
 
 .App-title {

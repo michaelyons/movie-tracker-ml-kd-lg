@@ -10,16 +10,15 @@
   width: 100%;
   justify-content: space-around; }
 
-.App-header button {
-  border-radius: 9rem 9rem;
-}
-
 .welcome-header {
   display: flex;
   flex-direction: column;
   width: 27%;
   align-items: center;
   margin-top: 1.2rem; }
+
+.App-header button {
+  border-radius: 9rem 9rem; }
 
 .title-header {
   display: flex;

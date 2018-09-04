@@ -47,13 +47,14 @@ ShallowWrapper {
                 className="signup-input"
                 name="password"
                 onChange={[Function]}
-                placeholder="Password"
+                placeholder="Password: Must be at least 6 characters"
                 type="password"
                 value=""
         />
         <div>
                 <button
                         className="user-submit-button"
+                        disabled={true}
                 >
                         Sign Up
                 </button>
@@ -99,13 +100,14 @@ ShallowWrapper {
             className="signup-input"
             name="password"
             onChange={[Function]}
-            placeholder="Password"
+            placeholder="Password: Must be at least 6 characters"
             type="password"
             value=""
 />,
           <div>
             <button
                         className="user-submit-button"
+                        disabled={true}
             >
                         Sign Up
             </button>
@@ -175,7 +177,7 @@ ShallowWrapper {
             "className": "signup-input",
             "name": "password",
             "onChange": [Function],
-            "placeholder": "Password",
+            "placeholder": "Password: Must be at least 6 characters",
             "type": "password",
             "value": "",
           },
@@ -191,6 +193,7 @@ ShallowWrapper {
             "children": Array [
               <button
                 className="user-submit-button"
+                disabled={true}
 >
                 Sign Up
 </button>,
@@ -212,6 +215,7 @@ ShallowWrapper {
               "props": Object {
                 "children": "Sign Up",
                 "className": "user-submit-button",
+                "disabled": true,
               },
               "ref": null,
               "rendered": "Sign Up",
@@ -274,13 +278,14 @@ ShallowWrapper {
                     className="signup-input"
                     name="password"
                     onChange={[Function]}
-                    placeholder="Password"
+                    placeholder="Password: Must be at least 6 characters"
                     type="password"
                     value=""
           />
           <div>
                     <button
                               className="user-submit-button"
+                              disabled={true}
                     >
                               Sign Up
                     </button>
@@ -326,13 +331,14 @@ ShallowWrapper {
               className="signup-input"
               name="password"
               onChange={[Function]}
-              placeholder="Password"
+              placeholder="Password: Must be at least 6 characters"
               type="password"
               value=""
 />,
             <div>
               <button
                             className="user-submit-button"
+                            disabled={true}
               >
                             Sign Up
               </button>
@@ -402,7 +408,7 @@ ShallowWrapper {
               "className": "signup-input",
               "name": "password",
               "onChange": [Function],
-              "placeholder": "Password",
+              "placeholder": "Password: Must be at least 6 characters",
               "type": "password",
               "value": "",
             },
@@ -418,6 +424,7 @@ ShallowWrapper {
               "children": Array [
                 <button
                   className="user-submit-button"
+                  disabled={true}
 >
                   Sign Up
 </button>,
@@ -439,6 +446,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": "Sign Up",
                   "className": "user-submit-button",
+                  "disabled": true,
                 },
                 "ref": null,
                 "rendered": "Sign Up",

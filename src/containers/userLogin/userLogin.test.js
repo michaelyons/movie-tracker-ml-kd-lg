@@ -28,5 +28,11 @@ describe('UserLogin', () => {
     expect(mockHandleLogin).toHaveBeenCalled()
   })
 
+  it('should call storeUserLogin when the form is submitted', async () => {
+    const mockEvent = new Event('event') 
+    await wrapper.instance().storeUserLogin(mockEvent)
+    expect(mockHandleLogin).toHaveBeenCalled()
+  })
+
 
 })

@@ -21,7 +21,7 @@ Install the dependencies -> `npm install` -> Start server -> `npm start` -> Once
 
 ### Our comp
 
-![comp](https://github.com/michaelyons/movie-tracker-ml-kd-lg/blob/master/Screen%20Shot%202018-08-29%20at%202.51.32%20PM.png)
+![comp](https://github.com/michaelyons/movie-tracker-ml-kd-lg/blob/master/Screen%20Shot%202018-09-04%20at%208.07.57%20AM.png)
 
 ### Authors
 [Kiel Dehnert](https://github.com/kielzor), 

@@ -11,7 +11,6 @@ describe('UserSignup', () => {
     wrapper = shallow(<UserSignup handleSignup={mockHandleSignup} />)
   })
 
-  
   it('should match the snapshot', () => {
     expect(wrapper).toMatchSnapshot()
   })
@@ -28,7 +27,7 @@ describe('UserSignup', () => {
   })
 
   it('should call handleSignup when the form is submitted', () => {
-    wrapper.find('#user-submit-button').simulate('click')
+    wrapper.find('#user-login-button').simulate('click')
 
     expect(mockHandleSignup).toHaveBeenCalled()
   })

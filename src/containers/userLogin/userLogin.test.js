@@ -18,11 +18,14 @@ describe('UserLogin', () => {
   it('should reset the input fields after user submits info', async () => {
     wrapper.setState ({email: 'drlag2be@gmail.com', password: 'password'})
     const mockEvent = new Event('event') 
-    
     await wrapper.instance().handleSubmit(mockEvent)
-
     expect(wrapper.state('email')).toEqual('')
     expect(wrapper.state('password')).toEqual('')
+  })
+
+  it('should call loginUser when the form is submitted', () => {
+    wrapper.find('#user-submit-button').simulate('click')
+    expect(mockHandleLogin).toHaveBeenCalled()
   })
 
 

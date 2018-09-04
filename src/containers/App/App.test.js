@@ -3,8 +3,6 @@ import { App } from './App';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { rootReducer } from '../../reducers/index';
-import { shallow } from 'enzyme';
-import { MemoryRouter } from 'react-router';
 
 describe('App', () => {
   let wrapper;

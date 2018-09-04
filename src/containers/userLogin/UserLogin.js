@@ -7,7 +7,6 @@ import { addFavorites } from '../../actions/index';
 import UserSignup from '../../components/userSignup/UserSignup'
 import './UserLogin.css'
 
-
 class UserLogin extends Component {
   constructor() {
     super();
@@ -43,11 +42,10 @@ class UserLogin extends Component {
     }
   };
 
-  viewFavoritesPage = async (user) => {
+  viewFavoritesPage = async user => {
     const url = `http://localhost:3000/api/users/${user}/favorites`;
     const userFavoritesData = await viewFavoritesFetchCall(url);
-    userFavoritesData.forEach(data => this.props.populateMovieData(data))
-    ;
+    userFavoritesData.forEach(data => this.props.populateMovieData(data));
   };
 
   handleInput = event => {
@@ -61,28 +59,28 @@ class UserLogin extends Component {
     return this.state.email.length > 0 && this.state.password.length > 6;
   };
 
-  storeUserLogin = (object) => {
-    const user = `currentUser${object.id}`
-    const stringifiedUser = JSON.stringify(object)
-    localStorage.setItem(user, stringifiedUser)
-    this.retrieveUserLogin(user)
-  }
+  storeUserLogin = object => {
+    const user = `currentUser${object.id}`;
+    const stringifiedUser = JSON.stringify(object);
+    localStorage.setItem(user, stringifiedUser);
+    this.retrieveUserLogin(user);
+  };
 
-  retrieveUserLogin = (string) => {
-    const retrievedUser = localStorage.getItem(string)
-    const parsedUser = JSON.parse(retrievedUser)
+  retrieveUserLogin = string => {
+    const retrievedUser = localStorage.getItem(string);
+    JSON.parse(retrievedUser);
     this.setState({
       loggedIn: true
-    })
-  }
+    });
+  };
 
   handleSignup = () => {
-    const updateSignup = !this.state.signup
-    this.setState ({
+    const updateSignup = !this.state.signup;
+    this.setState({
       signup: updateSignup
-    })
-  }
-  
+    });
+  };
+
   render() {
     return (
       <div className='login-container'>
@@ -122,7 +120,7 @@ class UserLogin extends Component {
 
 const mapStateToProps = state => ({
   id: state.loginUserReducer
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   populateMovieData: favorite => dispatch(addFavorites(favorite)),

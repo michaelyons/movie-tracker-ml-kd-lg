@@ -30,14 +30,14 @@ class App extends Component {
     this.setState({ currentDisplay: [currentMovieData] })
 
     if (this.state[currentMovieData].length) {
-      this.props.makeCards(this.state[currentMovieData])
-      return
+      this.props.makeCards(this.state[currentMovieData]);
+      return;
     }
 
     const data = await currentMovieCategoryFetch(currentMovieData);
     this.props.makeCards(data);
 
-    this.setState({ 
+    this.setState({
       [currentMovieData]: data,
       clicked: false,
     })
@@ -159,7 +159,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   makeCards: movieArray => dispatch(movieCard(movieArray)),
   logOutUser: user => dispatch(userLogin(user)),
-  clearFavorites: favorite => dispatch(resetFavorites(favorite)),
+  clearFavorites: favorite => dispatch(resetFavorites(favorite))
 });
 
 export default connect(

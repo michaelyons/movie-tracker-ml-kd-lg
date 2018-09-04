@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userLogin } from '../../actions/index';
-import { viewFavoritesFetchCall } from '../../helpers'
-import { Redirect } from 'react-router-dom';
-import { addFavorites } from '../../actions/index';
-import UserSignup from '../../components/userSignup/UserSignup'
-import './UserLogin.css'
+import { userLogin, addFavorites } from '../../actions/index';
+import { viewFavoritesFetchCall } from '../../helpers';
+import UserSignup from '../../components/userSignup/UserSignup';
+import './UserLogin.css';
 
 class UserLogin extends Component {
   constructor() {
@@ -34,7 +32,7 @@ class UserLogin extends Component {
         password: ''
       });
       const data = await response.json();
-      this.storeUserLogin(data.data)
+      this.storeUserLogin(data.data);
       this.props.loggedInUser(data);
       await this.viewFavoritesPage(data.data.id);
     } catch (error) {
@@ -83,36 +81,40 @@ class UserLogin extends Component {
 
   render() {
     return (
-      <div className='login-container'>
-        {!this.state.signup && <form className='login-form' onSubmit={this.loginUser}>
-          <h2 className='login-title'>Log In</h2>
-          <input
-            className='login-input'
-            type="email"
-            placeholder="Enter Email"
-            value={this.state.email}
-            name="email"
-            onChange={this.handleInput}
-          />
-          <input
-            className='login-input'
-            type="password"
-            placeholder="Enter Password"
-            value={this.state.password}
-            name="password"
-            onChange={this.handleInput}
-          />
-          <div>
-            <button 
-              className='user-login-button'
-              disabled={!this.validateUserInputForm()}
-            >Login</button>
-            <button 
-              className='user-login-button'
-              onClick={this.handleSignup}>Register</button>
-          </div>
-        </form>}
-        {this.state.signup && <UserSignup handleSignup={this.handleSignup}/>}
+      <div className="login-container">
+        {!this.state.signup && (
+          <form className="login-form" onSubmit={this.loginUser}>
+            <h2 className="login-title">Log In</h2>
+            <input
+              className="login-input"
+              type="email"
+              placeholder="Enter Email"
+              value={this.state.email}
+              name="email"
+              onChange={this.handleInput}
+            />
+            <input
+              className="login-input"
+              type="password"
+              placeholder="Enter Password"
+              value={this.state.password}
+              name="password"
+              onChange={this.handleInput}
+            />
+            <div>
+              <button
+                className="user-login-button"
+                disabled={!this.validateUserInputForm()}
+              >
+                Login
+              </button>
+              <button className="user-login-button" onClick={this.handleSignup}>
+                Register
+              </button>
+            </div>
+          </form>
+        )}
+        {this.state.signup && <UserSignup handleSignup={this.handleSignup} />}
       </div>
     );
   }

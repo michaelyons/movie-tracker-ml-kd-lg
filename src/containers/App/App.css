@@ -17,6 +17,9 @@
   align-items: center;
   margin-top: 1.2rem; }
 
+.App-header button {
+  border-radius: 9rem 9rem; }
+
 .title-header {
   display: flex;
   flex-direction: column;

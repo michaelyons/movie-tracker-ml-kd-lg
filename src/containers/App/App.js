@@ -4,7 +4,7 @@ import { movieCard, userLogin, resetFavorites } from '../../actions/index.js';
 import './App.css';
 import { currentMovieCategoryFetch } from '../../helpers.js';
 import CardsContainer from '../cardsContainer/CardsContainer';
-import { Link, NavLink, Route, Switch } from 'react-router-dom';
+import {  NavLink, Route } from 'react-router-dom';
 import UserLogin from '../userLogin/UserLogin';
 
 class App extends Component {
@@ -142,7 +142,6 @@ class App extends Component {
               <CardsContainer {...props} 
               clicked={this.state.clicked} 
               setFavoriteState={this.setFavoriteState}
-              // rerender={this.state.rerender}
               />} 
           />
         </main>

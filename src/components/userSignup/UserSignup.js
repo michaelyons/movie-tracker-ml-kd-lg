@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { newUserFetchCall } from '../../helpers.js';
 import './UserSignup.css'
+import PropTypes from 'prop-types';
+
 
 class UserSignup extends Component {
   constructor() {
@@ -63,12 +65,17 @@ class UserSignup extends Component {
           />
           <div>
             <button className='user-submit-button'>Sign Up</button>
-            <button className='user-submit-button' onClick={() => this.props.handleSignup()}>Cancel</button>
+            <button id='user-submit-button' className='user-submit-button' onClick={() => this.props.handleSignup()}>Cancel</button>
           </div>
         </form>
       </div>
     );
   }
+}
+
+UserSignup.propTypes = {
+  loginUser: PropTypes.func,
+  handleSignup: PropTypes.func
 }
 
 export default UserSignup;

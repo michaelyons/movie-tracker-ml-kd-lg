@@ -114,7 +114,7 @@ class UserLogin extends Component {
               onClick={this.handleSignup}>Register</button>
           </div>
         </form>}
-        {this.state.signup && <UserSignup loginUser={this.loginUser} handleSignup={this.handleSignup}/>}
+        {this.state.signup && <UserSignup handleSignup={this.handleSignup}/>}
       </div>
     );
   }

@@ -11,5 +11,9 @@ describe('UserLogin', () => {
     wrapper = shallow(<UserLogin handleLogin={mockHandleLogin} />)
   })
 
+  it('should match the snapshot', () => {
+      expect(wrapper).toMatchSnapshot()
+  })
+
 
 })

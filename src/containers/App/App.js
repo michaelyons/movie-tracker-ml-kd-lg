@@ -7,7 +7,7 @@ import CardsContainer from '../cardsContainer/CardsContainer';
 import { NavLink, Route } from 'react-router-dom';
 import UserLogin from '../userLogin/UserLogin';
 
-class App extends Component {
+export class App extends Component {
   constructor() {
     super();
     this.state = {

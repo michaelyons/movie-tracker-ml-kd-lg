@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { userLogin, addFavorites } from '../../actions/index';
 import { viewFavoritesFetchCall } from '../../helpers';
+import PropTypes from 'prop-types';
 import UserSignup from '../../components/userSignup/UserSignup';
 import './UserLogin.css';
 
@@ -128,6 +129,11 @@ const mapDispatchToProps = dispatch => ({
   populateMovieData: favorite => dispatch(addFavorites(favorite)),
   loggedInUser: user => dispatch(userLogin(user))
 });
+
+UserLogin.propTypes = {
+  loggedInUser: PropTypes.func,
+  populateMovieData: PropTypes.func
+};
 
 export default connect(
   mapStateToProps,

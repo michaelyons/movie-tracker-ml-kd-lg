@@ -65,9 +65,9 @@ class CardsContainer extends Component {
     }
   };
 
-  evaluateClass =  (title) => {
-    let futureClass = 'button'
-    const favorites = this.props.favorite.map(favorite => favorite.title)
+  evaluateClass = title => {
+    let futureClass = 'button';
+    const favorites = this.props.favorite.map(favorite => favorite.title);
 
     if (favorites.includes(title)) futureClass += ' fave-clicked';
 

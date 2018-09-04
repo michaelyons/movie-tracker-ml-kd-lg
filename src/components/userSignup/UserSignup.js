@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { newUserFetchCall } from '../../helpers.js';
-import './UserSignup.css'
+import './UserSignup.css';
 import PropTypes from 'prop-types';
-
 
 class UserSignup extends Component {
   constructor() {
@@ -23,7 +22,7 @@ class UserSignup extends Component {
       email: '',
       password: ''
     });
-    this.props.handleSignup()
+    this.props.handleSignup();
     return data;
   };
 
@@ -35,16 +34,20 @@ class UserSignup extends Component {
   };
 
   validateButton = () => {
-    return this.state.email.length > 0 && this.state.password.length > 5 && this.state.name.length > 0;
+    return (
+      this.state.email.length > 0 &&
+      this.state.password.length > 5 &&
+      this.state.name.length > 0
+    );
   };
 
   render() {
     return (
       <div>
-        <form className='submit-form' onSubmit={this.handleSubmit}>
-          <h2 className='signup-title'>Sign Up</h2>
+        <form className="submit-form" onSubmit={this.handleSubmit}>
+          <h2 className="signup-title">Sign Up</h2>
           <input
-            className='signup-input'
+            className="signup-input"
             placeholder="User Name"
             value={this.state.name}
             type="text"
@@ -52,7 +55,7 @@ class UserSignup extends Component {
             onChange={this.handleChange}
           />
           <input
-            className='signup-input'
+            className="signup-input"
             placeholder="Email"
             value={this.state.email}
             type="email"
@@ -60,7 +63,7 @@ class UserSignup extends Component {
             onChange={this.handleChange}
           />
           <input
-            className='signup-input'
+            className="signup-input"
             placeholder="Password: Must be at least 6 characters"
             value={this.state.password}
             type="password"
@@ -68,10 +71,19 @@ class UserSignup extends Component {
             onChange={this.handleChange}
           />
           <div>
-            <button 
-              className='user-submit-button'
-              disabled={!this.validateButton()}>Sign Up</button>
-            <button id='user-submit-button' className='user-submit-button' onClick={() => this.props.handleSignup()}>Cancel</button>
+            <button
+              className="user-submit-button"
+              disabled={!this.validateButton()}
+            >
+              Sign Up
+            </button>
+            <button
+              id="user-submit-button"
+              className="user-submit-button"
+              onClick={() => this.props.handleSignup()}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>
@@ -82,6 +94,6 @@ class UserSignup extends Component {
 UserSignup.propTypes = {
   loginUser: PropTypes.func,
   handleSignup: PropTypes.func
-}
+};
 
 export default UserSignup;

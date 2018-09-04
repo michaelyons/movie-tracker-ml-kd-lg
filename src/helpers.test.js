@@ -1,8 +1,6 @@
 import {
   currentMovieCategoryFetch,
   cleanMovies,
-  viewFavoritesFetchCall,
-  cleanRefreshedMovies,
   newUserFetchCall,
   addFavorite,
   deleteFavorite

@@ -15,5 +15,15 @@ describe('UserLogin', () => {
       expect(wrapper).toMatchSnapshot()
   })
 
+  it('should reset the input fields after user submits info', async () => {
+    wrapper.setState ({email: 'drlag2be@gmail.com', password: 'password'})
+    const mockEvent = new Event('event') 
+    
+    await wrapper.instance().handleSubmit(mockEvent)
+
+    expect(wrapper.state('email')).toEqual('')
+    expect(wrapper.state('password')).toEqual('')
+  })
+
 
 })

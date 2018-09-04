@@ -13,7 +13,7 @@ describe('UserSignup', () => {
 
   
   it('should match the snapshot', () => {
-      expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should reset the input fields after user submits info', async () => {

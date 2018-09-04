@@ -34,6 +34,10 @@ class UserSignup extends Component {
     });
   };
 
+  validateButton = () => {
+    return this.state.email.length > 0 && this.state.password.length > 5 && this.state.name.length > 0;
+  };
+
   render() {
     return (
       <div>
@@ -57,14 +61,16 @@ class UserSignup extends Component {
           />
           <input
             className='signup-input'
-            placeholder="Password"
+            placeholder="Password: Must be at least 6 characters"
             value={this.state.password}
             type="password"
             name="password"
             onChange={this.handleChange}
           />
           <div>
-            <button className='user-submit-button'>Sign Up</button>
+            <button 
+              className='user-submit-button'
+              disabled={!this.validateButton()}>Sign Up</button>
             <button id='user-submit-button' className='user-submit-button' onClick={() => this.props.handleSignup()}>Cancel</button>
           </div>
         </form>

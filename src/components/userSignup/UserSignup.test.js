@@ -48,4 +48,15 @@ describe('UserSignup', () => {
 
     expect(wrapper.state('name')).toEqual('Kiel')
   }) 
+
+  it('should enable the button when there is something in all of the inputs', () => {
+    let result = wrapper.instance().validateButton()
+
+    expect(result).toEqual(false)
+
+    wrapper.setState({name: 'kiel', email: 'kiel@kiel', password: 'password'})
+    result = wrapper.instance().validateButton()
+
+    expect(result).toEqual(true)
+  })
 })

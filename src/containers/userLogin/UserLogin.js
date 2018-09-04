@@ -58,7 +58,7 @@ class UserLogin extends Component {
   };
 
   validateUserInputForm = () => {
-    return this.state.email.length > 8 && this.state.password.length > 6;
+    return this.state.email.length > 0 && this.state.password.length > 6;
   };
 
   storeUserLogin = (object) => {

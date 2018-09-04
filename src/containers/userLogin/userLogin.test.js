@@ -48,9 +48,15 @@ describe('UserLogin', () => {
     expect(result).toEqual(true)
   })
 
-  it('should display favorites when viewFavoritesPage is clicked', async () => {
+  it('should call viewFavoritesPage when view Favorites button is clicked', async () => {
     const mockEvent = new Event('event') 
     await wrapper.instance().viewFavoritesPage(mockEvent)
+    expect(mockHandleLogin).toHaveBeenCalled()
+  })
+
+  it('should call retrieveUserLogin when the form is submitted', async () => {
+    const mockEvent = new Event('event') 
+    await wrapper.instance().retrieveUserLogin(mockEvent)
     expect(mockHandleLogin).toHaveBeenCalled()
   })
 

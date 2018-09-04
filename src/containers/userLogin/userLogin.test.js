@@ -40,5 +40,12 @@ describe('UserLogin', () => {
     expect(wrapper.state('name')).toEqual('Lee')
   }) 
 
+  it('should enable the button when there is something in all of the inputs', () => {
+    let result = wrapper.instance().validateUserInputForm()
+    expect(result).toEqual(false)
+    wrapper.setState({email: 'drlag2be@gmail.com', password: 'password'})
+    result = wrapper.instance().validateUserInputForm()
+    expect(result).toEqual(true)
+  })
 
 })

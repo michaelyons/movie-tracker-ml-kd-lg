@@ -2,4 +2,5 @@
   width: 33%; }
 
 .fave-clicked {
-  background-color: #da6039; }
+  background-color: #da6039;
+  outline: none; }

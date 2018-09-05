@@ -8,21 +8,17 @@ import { movieCard, addFavorites, deleteFavorites } from '../../actions';
 
 describe('CardsContainer', () => {
   describe('mapStateToProps', () => {
-    it.skip('should return a movie Object', () => {
+    it('should return a movie Object', () => {
       const mockState = {
-        data: [{ name: 'Oceans 8' }],
-        favorite: [{ name: 'Oceans 8' }],
-        id: 2
+        loginUserReducer: { data: 23131, favorite: 21323, id: 23132 },
+        user: 'USER_LOGIN'
       };
-      const expected = {
-        data: [{ name: 'Oceans 8' }],
-        favorite: [{ name: 'Oceans 8' }],
-        id: 2
-      };
+
+      const expected = { data: 23131, favorite: 21323, id: 23132 };
 
       const mappedProps = mapStateToProps(mockState);
 
-      expect(mappedProps).toEqual(expected);
+      expect(mappedProps.id).toEqual(expected);
     });
   });
   describe('mapDispatchToProps', () => {

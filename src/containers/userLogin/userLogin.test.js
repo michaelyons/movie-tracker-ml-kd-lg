@@ -3,9 +3,8 @@ import UserLogin from './UserLogin.js'
 import { shallow } from 'enzyme'
 
 describe('UserLogin', () => {
-  let wrapper
-  let mockHandleLogin = jest.fn()
-  let mockState = { email: '', password: ''}
+  let wrapper;
+  let mockHandleLogin = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(<UserLogin handleLogin={mockHandleLogin} />)

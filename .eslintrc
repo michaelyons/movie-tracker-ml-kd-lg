@@ -24,7 +24,7 @@
     "func-call-spacing": ["error", "never"],
     "indent": ["warn", 2, { "SwitchCase": 1 }],
     "keyword-spacing": ["error", { "before": true, "after": true }],
-    "max-len": ["warn", 150],
+    "max-len": ["warn", 250],
     "no-duplicate-imports": "error",
     "id-length": "error",
     "id-blacklist": [

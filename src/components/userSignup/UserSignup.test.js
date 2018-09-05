@@ -1,61 +1,68 @@
-import React from 'react'
-import UserSignup from './UserSignup'
-import { shallow } from 'enzyme'
+import React from 'react';
+import UserSignup from './UserSignup';
+import { shallow } from 'enzyme';
 
 describe('UserSignup', () => {
-  let wrapper
-  let mockHandleSignup = jest.fn()
-  let mockState = {name: '', email: '', password: ''}
+  let wrapper;
+  let mockHandleSignup = jest.fn();
 
   beforeEach(() => {
-    wrapper = shallow(<UserSignup handleSignup={mockHandleSignup} />)
-  })
+    wrapper = shallow(<UserSignup handleSignup={mockHandleSignup} />);
+  });
 
   it('should match the snapshot', () => {
-    expect(wrapper).toMatchSnapshot()
-  })
+    expect(wrapper).toMatchSnapshot();
+  });
 
   it('should reset the input fields after user submits info', async () => {
-    wrapper.setState ({name: 'kiel', email: 'kiel@gmail.com', password: 'password'})
-    const mockEvent = new Event('event') 
-    
-    await wrapper.instance().handleSubmit(mockEvent)
+    wrapper.setState({
+      name: 'kiel',
+      email: 'kiel@gmail.com',
+      password: 'password'
+    });
+    const mockEvent = new Event('event');
 
-    expect(wrapper.state('name')).toEqual('')
-    expect(wrapper.state('email')).toEqual('')
-    expect(wrapper.state('password')).toEqual('')
-  })
+    await wrapper.instance().handleSubmit(mockEvent);
+
+    expect(wrapper.state('name')).toEqual('');
+    expect(wrapper.state('email')).toEqual('');
+    expect(wrapper.state('password')).toEqual('');
+  });
 
   it('should call handleSignup when the form is submitted', () => {
-    wrapper.find('#user-login-button').simulate('click')
+    wrapper.find('#user-submit-button').simulate('click');
 
-    expect(mockHandleSignup).toHaveBeenCalled()
-  })
+    expect(mockHandleSignup).toHaveBeenCalled();
+  });
 
   it('should call handleSubmit when the form is submitted', async () => {
-    const mockEvent = new Event('event') 
+    const mockEvent = new Event('event');
 
-    await wrapper.instance().handleSubmit(mockEvent)
+    await wrapper.instance().handleSubmit(mockEvent);
 
-    expect(mockHandleSignup).toHaveBeenCalled()
-  })
+    expect(mockHandleSignup).toHaveBeenCalled();
+  });
 
   it('should set the state with the names and values', () => {
-    const mockData = {target: { name: 'name', value: 'Kiel' }}
+    const mockData = { target: { name: 'name', value: 'Kiel' } };
 
-    wrapper.instance().handleChange(mockData)
+    wrapper.instance().handleChange(mockData);
 
-    expect(wrapper.state('name')).toEqual('Kiel')
-  }) 
+    expect(wrapper.state('name')).toEqual('Kiel');
+  });
 
   it('should enable the button when there is something in all of the inputs', () => {
-    let result = wrapper.instance().validateButton()
+    let result = wrapper.instance().validateButton();
 
-    expect(result).toEqual(false)
+    expect(result).toEqual(false);
 
-    wrapper.setState({name: 'kiel', email: 'kiel@kiel', password: 'password'})
-    result = wrapper.instance().validateButton()
+    wrapper.setState({
+      name: 'kiel',
+      email: 'kiel@kiel',
+      password: 'password'
+    });
+    result = wrapper.instance().validateButton();
 
-    expect(result).toEqual(true)
-  })
-})
+    expect(result).toEqual(true);
+  });
+});

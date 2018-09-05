@@ -178,13 +178,13 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   loggedInUser: state,
   id: state.loginUserReducer,
   favorite: state.addFavoriteMovieReducer
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   makeCards: movieArray => dispatch(movieCard(movieArray)),
   logOutUser: user => dispatch(userLogin(user)),
   clearFavorites: favorite => dispatch(resetFavorites(favorite))

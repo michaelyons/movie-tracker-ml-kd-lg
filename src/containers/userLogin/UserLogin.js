@@ -121,6 +121,11 @@ class UserLogin extends Component {
   }
 }
 
+UserLogin.propTypes = {
+  loggedInUser: PropTypes.func,
+  populateMovieData: PropTypes.func
+};
+
 const mapStateToProps = state => ({
   id: state.loginUserReducer
 });
@@ -129,11 +134,6 @@ const mapDispatchToProps = dispatch => ({
   populateMovieData: favorite => dispatch(addFavorites(favorite)),
   loggedInUser: user => dispatch(userLogin(user))
 });
-
-UserLogin.propTypes = {
-  loggedInUser: PropTypes.func,
-  populateMovieData: PropTypes.func
-};
 
 export default connect(
   mapStateToProps,
